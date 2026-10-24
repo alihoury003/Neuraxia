@@ -1,0 +1,17 @@
+NEURAXIA WEBSITE REPAIR — upload only these 2 website files
+
+UPLOAD TO THE ROOT OF GitHub REPO user003/Neuraxia:
+1) index.html  (replace the existing index.html)
+2) .nojekyll   (new empty file; prevents GitHub Pages/Jekyll from breaking the one-file site)
+
+DO NOT upload any source folders or other project files for the website.
+The index.html in this repair ZIP is self-contained (CSS, JS, logo and both 3D model files embedded).
+
+If you cannot see/select .nojekyll because it is hidden:
+GitHub repo > Add file > Create new file > name it exactly: .nojekyll > leave content empty > Commit changes.
+
+After uploading, check GitHub repo > Settings > Pages:
+Build and deployment = Deploy from a branch
+Branch = main
+Folder = / (root)
+Save, wait 1–3 minutes, then hard-refresh https://user003.github.io/Neuraxia/
