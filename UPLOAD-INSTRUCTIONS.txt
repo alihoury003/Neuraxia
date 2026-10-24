@@ -1,0 +1,23 @@
+NEURAXIA — READY-MADE WEBSITE (no building needed)
+====================================================
+
+This folder IS the finished website. Upload ALL of its contents
+(index.html + assets/ + models/ + brand/ + .nojekyll) to the ROOT
+of your GitHub repository, keeping the folders as they are.
+
+Then on GitHub:
+  Repository → Settings → Pages → Build and deployment →
+  Source: "Deploy from a branch" → Branch: main → Folder: / (root) → Save
+
+Wait 1–2 minutes, then open:
+  • repo named <you>.github.io  →  https://<you>.github.io/
+  • repo named neuraxia          →  https://<you>.github.io/neuraxia/
+
+You should see the dark Neuraxia loading screen, then the 3D brain.
+(If you see plain unstyled text, the files didn't land at the root
+or the folders were flattened — re-upload keeping structure.)
+
+Notes
+- .nojekyll stops GitHub from "processing" the site; keep it.
+- Large files (models/*.glb) are essential — don't skip them.
+- This is a snapshot build; future updates arrive as fresh zips.
