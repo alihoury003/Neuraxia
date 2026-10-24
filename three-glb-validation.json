@@ -1,0 +1,1099 @@
+{
+  "generated_by": "app/scripts/validate-glb.mjs",
+  "three_revision": "180",
+  "meshopt_supported": true,
+  "files": [
+    {
+      "file": "../research/sprint-1b/output/neuraxia-bp3d-cns-desktop.glb",
+      "name": "neuraxia-bp3d-cns-desktop.glb",
+      "bytes": 7239340,
+      "load_ms_node_no_gpu": 54.1,
+      "scene_name": "Neuraxia_BodyParts3D_CNS_Sprint_1B",
+      "node_objects": 182,
+      "meshes": 182,
+      "vertices": 187151,
+      "triangles": 373682,
+      "default_visible_concepts": 171,
+      "sanitized_object_names": 178,
+      "default_visible_vertices": 167550,
+      "default_visible_triangles": 334444,
+      "materials": [
+        "neuraxia-axis",
+        "neuraxia-context",
+        "neuraxia-cortex",
+        "neuraxia-cranial",
+        "neuraxia-deep",
+        "neuraxia-meninges",
+        "neuraxia-ventricles",
+        "neuraxia-white"
+      ],
+      "categories": {
+        "axis": {
+          "concepts": 7,
+          "vertices": 18607,
+          "triangles": 37218
+        },
+        "context": {
+          "concepts": 1,
+          "vertices": 293,
+          "triangles": 582
+        },
+        "cortex": {
+          "concepts": 50,
+          "vertices": 76720,
+          "triangles": 153296
+        },
+        "cranial": {
+          "concepts": 35,
+          "vertices": 21337,
+          "triangles": 42506
+        },
+        "deep": {
+          "concepts": 57,
+          "vertices": 28379,
+          "triangles": 56498
+        },
+        "meninges": {
+          "concepts": 3,
+          "vertices": 7614,
+          "triangles": 15220
+        },
+        "ventricles": {
+          "concepts": 9,
+          "vertices": 10788,
+          "triangles": 21540
+        },
+        "white": {
+          "concepts": 20,
+          "vertices": 23413,
+          "triangles": 46822
+        }
+      },
+      "global_bounds_m": {
+        "min": [
+          -0.07368224114179611,
+          -0.39694008231163025,
+          -0.09579518437385559
+        ],
+        "max": [
+          0.07834203541278839,
+          0.39694008231163025,
+          0.09579518437385559
+        ],
+        "size": [
+          0.1520242765545845,
+          0.7938801646232605,
+          0.19159036874771118
+        ],
+        "center": [
+          0.0023298971354961395,
+          0,
+          0
+        ]
+      },
+      "errors": [],
+      "sample_meshes": [
+        {
+          "object_name": "Hypothalamus",
+          "display_name": "Hypothalamus",
+          "concept_id": "Hypothalamus",
+          "category": "deep",
+          "side": "bilateral",
+          "default_visible": true,
+          "vertices": 721,
+          "triangles": 1426,
+          "material": "neuraxia-deep",
+          "bounds": {
+            "min": [
+              -0.00829249620437622,
+              0.2962871789932251,
+              0.008203345350921154
+            ],
+            "max": [
+              0.00696936110034585,
+              0.3161604404449463,
+              0.026152044534683228
+            ],
+            "size": [
+              0.01526185730472207,
+              0.01987326145172119,
+              0.017948699183762074
+            ],
+            "center": [
+              -0.0006615675520151854,
+              0.3062238097190857,
+              0.01717769494280219
+            ]
+          },
+          "source_fj_ids": [
+            "FJ1760",
+            "FJ1808"
+          ]
+        },
+        {
+          "object_name": "Anterior_commissure",
+          "display_name": "Anterior commissure",
+          "concept_id": "anterior-commissure",
+          "category": "white",
+          "side": "midline_or_unspecified",
+          "default_visible": true,
+          "vertices": 408,
+          "triangles": 812,
+          "material": "neuraxia-white",
+          "bounds": {
+            "min": [
+              -0.012919999659061432,
+              0.3156925141811371,
+              0.016922350972890854
+            ],
+            "max": [
+              0.011620000004768372,
+              0.31827250123023987,
+              0.021582351997494698
+            ],
+            "size": [
+              0.024539999663829803,
+              0.002579987049102783,
+              0.004660001024603844
+            ],
+            "center": [
+              -0.0006499998271465302,
+              0.3169825077056885,
+              0.019252351485192776
+            ]
+          },
+          "source_fj_ids": [
+            "FJ1734"
+          ]
+        },
+        {
+          "object_name": "Brachium_of_left_inferior_colliculus",
+          "display_name": "Brachium of left inferior colliculus",
+          "concept_id": "brachium-of-left-inferior-colliculus",
+          "category": "white",
+          "side": "left",
+          "default_visible": true,
+          "vertices": 156,
+          "triangles": 308,
+          "material": "neuraxia-white",
+          "bounds": {
+            "min": [
+              0.0023799999617040157,
+              0.29620251059532166,
+              -0.015767648816108704
+            ],
+            "max": [
+              0.014139999635517597,
+              0.30729249119758606,
+              -0.008307648822665215
+            ],
+            "size": [
+              0.011759999673813581,
+              0.011089980602264404,
+              0.007459999993443489
+            ],
+            "center": [
+              0.008259999798610806,
+              0.30174750089645386,
+              -0.012037648819386959
+            ]
+          },
+          "source_fj_ids": [
+            "FJ1761"
+          ]
+        },
+        {
+          "object_name": "Brachium_of_left_superior_colliculus",
+          "display_name": "Brachium of left superior colliculus",
+          "concept_id": "brachium-of-left-superior-colliculus",
+          "category": "white",
+          "side": "left",
+          "default_visible": true,
+          "vertices": 135,
+          "triangles": 266,
+          "material": "neuraxia-white",
+          "bounds": {
+            "min": [
+              0.0020099999383091927,
+              0.30111250281333923,
+              -0.016187649220228195
+            ],
+            "max": [
+              0.017020000144839287,
+              0.3078624904155731,
+              -0.009547648951411247
+            ],
+            "size": [
+              0.015010000206530094,
+              0.006749987602233887,
+              0.006640000268816948
+            ],
+            "center": [
+              0.00951500004157424,
+              0.3044874966144562,
+              -0.012867649085819721
+            ]
+          },
+          "source_fj_ids": [
+            "FJ1736"
+          ]
+        },
+        {
+          "object_name": "Brachium_of_right_inferior_colliculus",
+          "display_name": "Brachium of right inferior colliculus",
+          "concept_id": "brachium-of-right-inferior-colliculus",
+          "category": "white",
+          "side": "right",
+          "default_visible": true,
+          "vertices": 132,
+          "triangles": 260,
+          "material": "neuraxia-white",
+          "bounds": {
+            "min": [
+              -0.015440000221133232,
+              0.2962225079536438,
+              -0.015787648037075996
+            ],
+            "max": [
+              -0.003659999929368496,
+              0.30729249119758606,
+              -0.008237648755311966
+            ],
+            "size": [
+              0.011780000291764736,
+              0.01106998324394226,
+              0.0075499992817640305
+            ],
+            "center": [
+              -0.009550000075250864,
+              0.30175749957561493,
+              -0.012012648396193981
+            ]
+          },
+          "source_fj_ids": [
+            "FJ1809"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "../research/sprint-1b/output/neuraxia-bp3d-cns-mobile.glb",
+      "name": "neuraxia-bp3d-cns-mobile.glb",
+      "bytes": 3924144,
+      "load_ms_node_no_gpu": 32.7,
+      "scene_name": "Neuraxia_BodyParts3D_CNS_Sprint_1B",
+      "node_objects": 182,
+      "meshes": 182,
+      "vertices": 95089,
+      "triangles": 189484,
+      "default_visible_concepts": 171,
+      "sanitized_object_names": 178,
+      "default_visible_vertices": 84576,
+      "default_visible_triangles": 168428,
+      "materials": [
+        "neuraxia-axis",
+        "neuraxia-context",
+        "neuraxia-cortex",
+        "neuraxia-cranial",
+        "neuraxia-deep",
+        "neuraxia-meninges",
+        "neuraxia-ventricles",
+        "neuraxia-white"
+      ],
+      "categories": {
+        "axis": {
+          "concepts": 7,
+          "vertices": 9388,
+          "triangles": 18738
+        },
+        "context": {
+          "concepts": 1,
+          "vertices": 147,
+          "triangles": 290
+        },
+        "cortex": {
+          "concepts": 50,
+          "vertices": 32909,
+          "triangles": 65662
+        },
+        "cranial": {
+          "concepts": 35,
+          "vertices": 12605,
+          "triangles": 25028
+        },
+        "deep": {
+          "concepts": 57,
+          "vertices": 17119,
+          "triangles": 33978
+        },
+        "meninges": {
+          "concepts": 3,
+          "vertices": 3559,
+          "triangles": 7100
+        },
+        "ventricles": {
+          "concepts": 9,
+          "vertices": 5868,
+          "triangles": 11700
+        },
+        "white": {
+          "concepts": 20,
+          "vertices": 13494,
+          "triangles": 26988
+        }
+      },
+      "global_bounds_m": {
+        "min": [
+          -0.07379952818155289,
+          -0.3969869017601013,
+          -0.09573148936033249
+        ],
+        "max": [
+          0.07835523784160614,
+          0.3969869017601013,
+          0.09573148936033249
+        ],
+        "size": [
+          0.15215476602315903,
+          0.7939738035202026,
+          0.19146297872066498
+        ],
+        "center": [
+          0.0022778548300266266,
+          0,
+          0
+        ]
+      },
+      "errors": [],
+      "sample_meshes": [
+        {
+          "object_name": "Hypothalamus",
+          "display_name": "Hypothalamus",
+          "concept_id": "Hypothalamus",
+          "category": "deep",
+          "side": "bilateral",
+          "default_visible": true,
+          "vertices": 375,
+          "triangles": 734,
+          "material": "neuraxia-deep",
+          "bounds": {
+            "min": [
+              -0.008245233446359634,
+              0.2963091731071472,
+              0.008086582645773888
+            ],
+            "max": [
+              0.006957594305276871,
+              0.3161648213863373,
+              0.026035387068986893
+            ],
+            "size": [
+              0.015202827751636505,
+              0.019855648279190063,
+              0.017948804423213005
+            ],
+            "center": [
+              -0.0006438195705413818,
+              0.30623699724674225,
+              0.01706098485738039
+            ]
+          },
+          "source_fj_ids": [
+            "FJ1760",
+            "FJ1808"
+          ]
+        },
+        {
+          "object_name": "Anterior_commissure",
+          "display_name": "Anterior commissure",
+          "concept_id": "anterior-commissure",
+          "category": "white",
+          "side": "midline_or_unspecified",
+          "default_visible": true,
+          "vertices": 408,
+          "triangles": 812,
+          "material": "neuraxia-white",
+          "bounds": {
+            "min": [
+              -0.012919999659061432,
+              0.3156895339488983,
+              0.016811329871416092
+            ],
+            "max": [
+              0.011620000004768372,
+              0.3182695209980011,
+              0.021471329033374786
+            ],
+            "size": [
+              0.024539999663829803,
+              0.002579987049102783,
+              0.0046599991619586945
+            ],
+            "center": [
+              -0.0006499998271465302,
+              0.3169795274734497,
+              0.01914132945239544
+            ]
+          },
+          "source_fj_ids": [
+            "FJ1734"
+          ]
+        },
+        {
+          "object_name": "Brachium_of_left_inferior_colliculus",
+          "display_name": "Brachium of left inferior colliculus",
+          "concept_id": "brachium-of-left-inferior-colliculus",
+          "category": "white",
+          "side": "left",
+          "default_visible": true,
+          "vertices": 156,
+          "triangles": 308,
+          "material": "neuraxia-white",
+          "bounds": {
+            "min": [
+              0.0023799999617040157,
+              0.2961995303630829,
+              -0.015878669917583466
+            ],
+            "max": [
+              0.014139999635517597,
+              0.3072895407676697,
+              -0.008418669924139977
+            ],
+            "size": [
+              0.011759999673813581,
+              0.011090010404586792,
+              0.007459999993443489
+            ],
+            "center": [
+              0.008259999798610806,
+              0.3017445355653763,
+              -0.012148669920861721
+            ]
+          },
+          "source_fj_ids": [
+            "FJ1761"
+          ]
+        },
+        {
+          "object_name": "Brachium_of_left_superior_colliculus",
+          "display_name": "Brachium of left superior colliculus",
+          "concept_id": "brachium-of-left-superior-colliculus",
+          "category": "white",
+          "side": "left",
+          "default_visible": true,
+          "vertices": 135,
+          "triangles": 266,
+          "material": "neuraxia-white",
+          "bounds": {
+            "min": [
+              0.0020099999383091927,
+              0.30110952258110046,
+              -0.016298670321702957
+            ],
+            "max": [
+              0.017020000144839287,
+              0.30785953998565674,
+              -0.00965867005288601
+            ],
+            "size": [
+              0.015010000206530094,
+              0.006750017404556274,
+              0.006640000268816948
+            ],
+            "center": [
+              0.00951500004157424,
+              0.3044845312833786,
+              -0.012978670187294483
+            ]
+          },
+          "source_fj_ids": [
+            "FJ1736"
+          ]
+        },
+        {
+          "object_name": "Brachium_of_right_inferior_colliculus",
+          "display_name": "Brachium of right inferior colliculus",
+          "concept_id": "brachium-of-right-inferior-colliculus",
+          "category": "white",
+          "side": "right",
+          "default_visible": true,
+          "vertices": 132,
+          "triangles": 260,
+          "material": "neuraxia-white",
+          "bounds": {
+            "min": [
+              -0.015440000221133232,
+              0.29621952772140503,
+              -0.015898671001195908
+            ],
+            "max": [
+              -0.003659999929368496,
+              0.3072895407676697,
+              -0.008348669856786728
+            ],
+            "size": [
+              0.011780000291764736,
+              0.011070013046264648,
+              0.00755000114440918
+            ],
+            "center": [
+              -0.009550000075250864,
+              0.30175453424453735,
+              -0.012123670428991318
+            ]
+          },
+          "source_fj_ids": [
+            "FJ1809"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "../research/sprint-1b/output/neuraxia-bp3d-cns-desktop.meshopt.glb",
+      "name": "neuraxia-bp3d-cns-desktop.meshopt.glb",
+      "bytes": 2316592,
+      "load_ms_node_no_gpu": 43,
+      "scene_name": "Neuraxia_BodyParts3D_CNS_Sprint_1B",
+      "node_objects": 182,
+      "meshes": 182,
+      "vertices": 187151,
+      "triangles": 373682,
+      "default_visible_concepts": 171,
+      "sanitized_object_names": 178,
+      "default_visible_vertices": 167550,
+      "default_visible_triangles": 334444,
+      "materials": [
+        "neuraxia-axis",
+        "neuraxia-context",
+        "neuraxia-cortex",
+        "neuraxia-cranial",
+        "neuraxia-deep",
+        "neuraxia-meninges",
+        "neuraxia-ventricles",
+        "neuraxia-white"
+      ],
+      "categories": {
+        "axis": {
+          "concepts": 7,
+          "vertices": 18607,
+          "triangles": 37218
+        },
+        "context": {
+          "concepts": 1,
+          "vertices": 293,
+          "triangles": 582
+        },
+        "cortex": {
+          "concepts": 50,
+          "vertices": 76720,
+          "triangles": 153296
+        },
+        "cranial": {
+          "concepts": 35,
+          "vertices": 21337,
+          "triangles": 42506
+        },
+        "deep": {
+          "concepts": 57,
+          "vertices": 28379,
+          "triangles": 56498
+        },
+        "meninges": {
+          "concepts": 3,
+          "vertices": 7614,
+          "triangles": 15220
+        },
+        "ventricles": {
+          "concepts": 9,
+          "vertices": 10788,
+          "triangles": 21540
+        },
+        "white": {
+          "concepts": 20,
+          "vertices": 23413,
+          "triangles": 46822
+        }
+      },
+      "global_bounds_m": {
+        "min": [
+          -0.07368606462880047,
+          -0.39694008231163025,
+          -0.09579518437385559
+        ],
+        "max": [
+          0.07834876965389516,
+          0.39693620585960876,
+          0.09578563968646762
+        ],
+        "size": [
+          0.15203483428269562,
+          0.793876288171239,
+          0.19158082406032323
+        ],
+        "center": [
+          0.0023313525125473467,
+          -0.0000019382260107447813,
+          -0.0000047723436939831054
+        ]
+      },
+      "errors": [],
+      "sample_meshes": [
+        {
+          "object_name": "Hypothalamus",
+          "display_name": "Hypothalamus",
+          "concept_id": "Hypothalamus",
+          "category": "deep",
+          "side": "bilateral",
+          "default_visible": true,
+          "vertices": 721,
+          "triangles": 1426,
+          "material": "neuraxia-deep",
+          "bounds": {
+            "min": [
+              -0.008292276465093288,
+              0.2962871789932251,
+              0.008202976893183845
+            ],
+            "max": [
+              0.006969141361062917,
+              0.3161604404449463,
+              0.026152412992420535
+            ],
+            "size": [
+              0.015261417826156205,
+              0.01987326145172119,
+              0.017949436099236687
+            ],
+            "center": [
+              -0.0006615675520151854,
+              0.3062238097190857,
+              0.01717769494280219
+            ]
+          },
+          "source_fj_ids": [
+            "FJ1760",
+            "FJ1808"
+          ]
+        },
+        {
+          "object_name": "Anterior_commissure",
+          "display_name": "Anterior commissure",
+          "concept_id": "anterior-commissure",
+          "category": "white",
+          "side": "midline_or_unspecified",
+          "default_visible": true,
+          "vertices": 408,
+          "triangles": 812,
+          "material": "neuraxia-white",
+          "bounds": {
+            "min": [
+              -0.012919999659061432,
+              0.31569286021213966,
+              0.01692319718499713
+            ],
+            "max": [
+              0.011620000004768372,
+              0.3182721551992373,
+              0.021581505785388422
+            ],
+            "size": [
+              0.024539999663829803,
+              0.0025792949870976356,
+              0.004658308600391292
+            ],
+            "center": [
+              -0.0006499998271465302,
+              0.3169825077056885,
+              0.019252351485192776
+            ]
+          },
+          "source_fj_ids": [
+            "FJ1734"
+          ]
+        },
+        {
+          "object_name": "Brachium_of_left_inferior_colliculus",
+          "display_name": "Brachium of left inferior colliculus",
+          "concept_id": "brachium-of-left-inferior-colliculus",
+          "category": "white",
+          "side": "left",
+          "default_visible": true,
+          "vertices": 156,
+          "triangles": 308,
+          "material": "neuraxia-white",
+          "bounds": {
+            "min": [
+              0.0023799999617040157,
+              0.2962027114753722,
+              -0.015767672215179815
+            ],
+            "max": [
+              0.014139999635517597,
+              0.3072922903175355,
+              -0.008307625423594102
+            ],
+            "size": [
+              0.011759999673813581,
+              0.011089578842163328,
+              0.007460046791585713
+            ],
+            "center": [
+              0.008259999798610806,
+              0.30174750089645386,
+              -0.012037648819386959
+            ]
+          },
+          "source_fj_ids": [
+            "FJ1761"
+          ]
+        },
+        {
+          "object_name": "Brachium_of_left_superior_colliculus",
+          "display_name": "Brachium of left superior colliculus",
+          "concept_id": "brachium-of-left-superior-colliculus",
+          "category": "white",
+          "side": "left",
+          "default_visible": true,
+          "vertices": 135,
+          "triangles": 266,
+          "material": "neuraxia-white",
+          "bounds": {
+            "min": [
+              0.0020099999383091927,
+              0.30111302942120066,
+              -0.016187146339050724
+            ],
+            "max": [
+              0.017020000144839287,
+              0.3078619638077117,
+              -0.009548151832588716
+            ],
+            "size": [
+              0.015010000206530094,
+              0.00674893438651103,
+              0.006638994506462008
+            ],
+            "center": [
+              0.00951500004157424,
+              0.3044874966144562,
+              -0.012867649085819721
+            ]
+          },
+          "source_fj_ids": [
+            "FJ1736"
+          ]
+        },
+        {
+          "object_name": "Brachium_of_right_inferior_colliculus",
+          "display_name": "Brachium of right inferior colliculus",
+          "concept_id": "brachium-of-right-inferior-colliculus",
+          "category": "white",
+          "side": "right",
+          "default_visible": true,
+          "vertices": 132,
+          "triangles": 260,
+          "material": "neuraxia-white",
+          "bounds": {
+            "min": [
+              -0.015440000221133232,
+              0.29622269338365764,
+              -0.015787842434824968
+            ],
+            "max": [
+              -0.003659999929368496,
+              0.3072923057675722,
+              -0.008237454357562997
+            ],
+            "size": [
+              0.011780000291764736,
+              0.011069612383914573,
+              0.007550388077261971
+            ],
+            "center": [
+              -0.009550000075250864,
+              0.30175749957561493,
+              -0.012012648396193981
+            ]
+          },
+          "source_fj_ids": [
+            "FJ1809"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "../research/sprint-1b/output/neuraxia-bp3d-cns-mobile.meshopt.glb",
+      "name": "neuraxia-bp3d-cns-mobile.meshopt.glb",
+      "bytes": 1492504,
+      "load_ms_node_no_gpu": 20.3,
+      "scene_name": "Neuraxia_BodyParts3D_CNS_Sprint_1B",
+      "node_objects": 182,
+      "meshes": 182,
+      "vertices": 95089,
+      "triangles": 189484,
+      "default_visible_concepts": 171,
+      "sanitized_object_names": 178,
+      "default_visible_vertices": 84576,
+      "default_visible_triangles": 168428,
+      "materials": [
+        "neuraxia-axis",
+        "neuraxia-context",
+        "neuraxia-cortex",
+        "neuraxia-cranial",
+        "neuraxia-deep",
+        "neuraxia-meninges",
+        "neuraxia-ventricles",
+        "neuraxia-white"
+      ],
+      "categories": {
+        "axis": {
+          "concepts": 7,
+          "vertices": 9388,
+          "triangles": 18738
+        },
+        "context": {
+          "concepts": 1,
+          "vertices": 147,
+          "triangles": 290
+        },
+        "cortex": {
+          "concepts": 50,
+          "vertices": 32909,
+          "triangles": 65662
+        },
+        "cranial": {
+          "concepts": 35,
+          "vertices": 12605,
+          "triangles": 25028
+        },
+        "deep": {
+          "concepts": 57,
+          "vertices": 17119,
+          "triangles": 33978
+        },
+        "meninges": {
+          "concepts": 3,
+          "vertices": 3559,
+          "triangles": 7100
+        },
+        "ventricles": {
+          "concepts": 9,
+          "vertices": 5868,
+          "triangles": 11700
+        },
+        "white": {
+          "concepts": 20,
+          "vertices": 13494,
+          "triangles": 26988
+        }
+      },
+      "global_bounds_m": {
+        "min": [
+          -0.07380344853213058,
+          -0.3969869017601013,
+          -0.09573148936033249
+        ],
+        "max": [
+          0.07835962512253919,
+          0.3969911241031726,
+          0.09572444846687911
+        ],
+        "size": [
+          0.15216307365466977,
+          0.7939780258632739,
+          0.1914559378272116
+        ],
+        "center": [
+          0.002278088295204303,
+          0.0000021111715356458838,
+          -0.000003520446726690274
+        ]
+      },
+      "errors": [],
+      "sample_meshes": [
+        {
+          "object_name": "Hypothalamus",
+          "display_name": "Hypothalamus",
+          "concept_id": "Hypothalamus",
+          "category": "deep",
+          "side": "bilateral",
+          "default_visible": true,
+          "vertices": 375,
+          "triangles": 734,
+          "material": "neuraxia-deep",
+          "bounds": {
+            "min": [
+              -0.008245950845500302,
+              0.2963091731071472,
+              0.008086949297498033
+            ],
+            "max": [
+              0.006958311704417538,
+              0.3161648213863373,
+              0.026035020417262748
+            ],
+            "size": [
+              0.01520426254991784,
+              0.019855648279190063,
+              0.017948071119764715
+            ],
+            "center": [
+              -0.0006438195705413818,
+              0.30623699724674225,
+              0.01706098485738039
+            ]
+          },
+          "source_fj_ids": [
+            "FJ1760",
+            "FJ1808"
+          ]
+        },
+        {
+          "object_name": "Anterior_commissure",
+          "display_name": "Anterior commissure",
+          "concept_id": "anterior-commissure",
+          "category": "white",
+          "side": "midline_or_unspecified",
+          "default_visible": true,
+          "vertices": 408,
+          "triangles": 812,
+          "material": "neuraxia-white",
+          "bounds": {
+            "min": [
+              -0.012919999659061432,
+              0.3156898799799009,
+              0.016812175152199793
+            ],
+            "max": [
+              0.011620000004768372,
+              0.3182691749669985,
+              0.021470483752591085
+            ],
+            "size": [
+              0.024539999663829803,
+              0.0025792949870976356,
+              0.004658308600391292
+            ],
+            "center": [
+              -0.0006499998271465302,
+              0.3169795274734497,
+              0.01914132945239544
+            ]
+          },
+          "source_fj_ids": [
+            "FJ1734"
+          ]
+        },
+        {
+          "object_name": "Brachium_of_left_inferior_colliculus",
+          "display_name": "Brachium of left inferior colliculus",
+          "concept_id": "brachium-of-left-inferior-colliculus",
+          "category": "white",
+          "side": "left",
+          "default_visible": true,
+          "vertices": 156,
+          "triangles": 308,
+          "material": "neuraxia-white",
+          "bounds": {
+            "min": [
+              0.0023799999617040157,
+              0.2961997461442946,
+              -0.015878693316654577
+            ],
+            "max": [
+              0.014139999635517597,
+              0.30728932498645795,
+              -0.008418646525068864
+            ],
+            "size": [
+              0.011759999673813581,
+              0.011089578842163328,
+              0.007460046791585713
+            ],
+            "center": [
+              0.008259999798610806,
+              0.3017445355653763,
+              -0.012148669920861721
+            ]
+          },
+          "source_fj_ids": [
+            "FJ1761"
+          ]
+        },
+        {
+          "object_name": "Brachium_of_left_superior_colliculus",
+          "display_name": "Brachium of left superior colliculus",
+          "concept_id": "brachium-of-left-superior-colliculus",
+          "category": "white",
+          "side": "left",
+          "default_visible": true,
+          "vertices": 135,
+          "triangles": 266,
+          "material": "neuraxia-white",
+          "bounds": {
+            "min": [
+              0.0020099999383091927,
+              0.301109147924456,
+              -0.016298167440525486
+            ],
+            "max": [
+              0.017020000144839287,
+              0.3078599146423012,
+              -0.009659172934063478
+            ],
+            "size": [
+              0.015010000206530094,
+              0.006750766717845247,
+              0.006638994506462008
+            ],
+            "center": [
+              0.00951500004157424,
+              0.3044845312833786,
+              -0.012978670187294483
+            ]
+          },
+          "source_fj_ids": [
+            "FJ1736"
+          ]
+        },
+        {
+          "object_name": "Brachium_of_right_inferior_colliculus",
+          "display_name": "Brachium of right inferior colliculus",
+          "concept_id": "brachium-of-right-inferior-colliculus",
+          "category": "white",
+          "side": "right",
+          "default_visible": true,
+          "vertices": 132,
+          "triangles": 260,
+          "material": "neuraxia-white",
+          "bounds": {
+            "min": [
+              -0.015440000221133232,
+              0.29621972805258007,
+              -0.015898864467622304
+            ],
+            "max": [
+              -0.003659999929368496,
+              0.30728934043649464,
+              -0.008348476390360333
+            ],
+            "size": [
+              0.011780000291764736,
+              0.011069612383914573,
+              0.007550388077261971
+            ],
+            "center": [
+              -0.009550000075250864,
+              0.30175453424453735,
+              -0.012123670428991318
+            ]
+          },
+          "source_fj_ids": [
+            "FJ1809"
+          ]
+        }
+      ]
+    }
+  ]
+}

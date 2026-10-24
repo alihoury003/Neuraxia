@@ -1,0 +1,27 @@
+{
+  "bp3d_default_visible_mesh_counts_by_category": {
+    "axis": 7,
+    "context": 1,
+    "cortex": 50,
+    "cranial": 27,
+    "deep": 57,
+    "meninges": 2,
+    "ventricles": 9,
+    "white": 18
+  },
+  "bp3d_triangles": 334444,
+  "bp3d_vertices": 167550,
+  "comparison_png": "/home/user/neuraxia/research/sprint-1b/reports/dataset-side-by-side-contact-sheet.png",
+  "layers_png": "/home/user/neuraxia/research/sprint-1b/reports/bp3d-category-layers-contact-sheet.png",
+  "spike_default_mesh_counts_by_category": {
+    "axis": 4,
+    "cortex": 12,
+    "cranial": 45,
+    "deep": 29,
+    "meninges": 2,
+    "ventricles": 8,
+    "white": 9
+  },
+  "spike_triangles": 339781,
+  "spike_vertices": 167571
+}

@@ -1,0 +1,2861 @@
+{
+  "bp3d": {
+    "categories": {
+      "axis": 7,
+      "context": 1,
+      "cortex": 50,
+      "cranial": 35,
+      "deep": 57,
+      "meninges": 3,
+      "ventricles": 9,
+      "white": 20
+    },
+    "components": 202,
+    "concepts": 182,
+    "cortex_concepts": 50,
+    "cranial_nerve_presence": {
+      "I": {
+        "matches": [
+          "Left olfactory nerve",
+          "Left olfactory tract",
+          "Right olfactory nerve",
+          "Right olfactory tract"
+        ],
+        "needle": "olfactory",
+        "present": true
+      },
+      "II": {
+        "matches": [
+          "Left optic nerve",
+          "Right optic nerve"
+        ],
+        "needle": "optic nerve",
+        "present": true
+      },
+      "III": {
+        "matches": [
+          "Left oculomotor nerve",
+          "Right oculomotor nerve"
+        ],
+        "needle": "oculomotor",
+        "present": true
+      },
+      "IV": {
+        "matches": [
+          "Left trochlear nerve",
+          "Right trochlear nerve"
+        ],
+        "needle": "trochlear",
+        "present": true
+      },
+      "IX": {
+        "matches": [
+          "Left glossopharyngeal nerve",
+          "Right glossopharyngeal nerve"
+        ],
+        "needle": "glossopharyngeal",
+        "present": true
+      },
+      "V": {
+        "matches": [
+          "Left trigeminal nerve",
+          "Right trigeminal nerve"
+        ],
+        "needle": "trigeminal",
+        "present": true
+      },
+      "VI": {
+        "matches": [
+          "Left abducens nerve",
+          "Right abducens nerve"
+        ],
+        "needle": "abducens",
+        "present": true
+      },
+      "VII": {
+        "matches": [
+          "Left facial nerve",
+          "Right facial nerve"
+        ],
+        "needle": "facial nerve",
+        "present": true
+      },
+      "VIII": {
+        "matches": [
+          "Left vestibulocochlear nerve",
+          "Right vestibulocochlear nerve"
+        ],
+        "needle": "vestibulocochlear",
+        "present": true
+      },
+      "X": {
+        "matches": [
+          "Left vagus nerve",
+          "Right vagus nerve"
+        ],
+        "needle": "vagus",
+        "present": true
+      },
+      "XI": {
+        "matches": [
+          "Left accessory nerve",
+          "Right accessory nerve"
+        ],
+        "needle": "accessory nerve",
+        "present": true
+      },
+      "XII": {
+        "matches": [
+          "Left hypoglossal nerve",
+          "Right hypoglossal nerve"
+        ],
+        "needle": "hypoglossal",
+        "present": true
+      }
+    },
+    "cranial_nerves_present": 12,
+    "names": [
+      "Hypothalamus",
+      "Anterior commissure",
+      "Brachium of left inferior colliculus",
+      "Brachium of left superior colliculus",
+      "Brachium of right inferior colliculus",
+      "Brachium of right superior colliculus",
+      "Cauda equina",
+      "Central canal of spinal cord",
+      "Cerebellum",
+      "Cerebral aqueduct",
+      "Cerebral dura mater",
+      "Commissure of fornix of forebrain",
+      "Corpus callosum",
+      "Falx cerebri",
+      "Fourth ventricle",
+      "Habenula",
+      "Interventricular foramen",
+      "Lamina terminalis",
+      "Left abducens nerve",
+      "Left accessory nerve",
+      "Left amygdala",
+      "Left angular gyrus",
+      "Left anterior nucleus of hypothalamus",
+      "Left anterior orbital gyrus",
+      "Left arcuate nucleus of hypothalamus",
+      "Left caudate nucleus",
+      "Left cerebral crus",
+      "Left choroid plexus",
+      "Left cingulate gyrus",
+      "Left cuneus",
+      "Left dorsomedial nucleus of hypothalamus",
+      "Left facial nerve",
+      "Left fornix",
+      "Left fusiform gyrus",
+      "Left globus pallidus",
+      "Left glossopharyngeal nerve",
+      "Left hippocampus",
+      "Left hypoglossal nerve",
+      "Left inferior colliculus",
+      "Left inferior frontal gyrus",
+      "Left inferior temporal gyrus",
+      "Left insula",
+      "Left internal capsule",
+      "Left lateral geniculate body",
+      "Left lateral hypothalamic nucleus",
+      "Left lateral occipital gyrus",
+      "Left lateral orbital gyrus",
+      "Left lateral preoptic nucleus",
+      "Left lateral ventricle",
+      "Left lingual gyrus",
+      "Left mammillothalamic tract",
+      "Left mandibular nerve",
+      "Left maxillary nerve",
+      "Left medial geniculate body",
+      "Left medial orbital gyrus",
+      "Left medial preoptic nucleus",
+      "Left middle frontal gyrus",
+      "Left middle temporal gyrus",
+      "Left oculomotor nerve",
+      "Left olfactory nerve",
+      "Left olfactory tract",
+      "Left ophthalmic nerve",
+      "Left optic nerve",
+      "Left optic tract",
+      "Left parahippocampal gyrus",
+      "Left paraventricular nucleus of hypothalamus",
+      "Left periventricular nucleus",
+      "Left postcentral gyrus",
+      "Left posterior nucleus of hypothalamus",
+      "Left posterior orbital gyrus",
+      "Left precentral gyrus",
+      "Left precuneus",
+      "Left putamen",
+      "Left red nucleus",
+      "Left straight gyrus",
+      "Left stria medullaris of thalamus",
+      "Left stria terminalis",
+      "Left substantia nigra",
+      "Left subthalamic nucleus",
+      "Left superior colliculus",
+      "Left superior frontal gyrus",
+      "Left superior occipital gyrus",
+      "Left superior parietal lobule",
+      "Left superior temporal gyrus",
+      "Left suprachiasmatic nucleus",
+      "Left supramarginal gyrus",
+      "Left supraoptic nucleus",
+      "Left thalamus",
+      "Left trigeminal nerve",
+      "Left trochlear nerve",
+      "Left vagus nerve",
+      "Left ventromedial nucleus of hypothalamus",
+      "Left vestibulocochlear nerve",
+      "Mammillary bodies",
+      "Medulla oblongata",
+      "Optic chiasm",
+      "Pineal body",
+      "Pituitary gland",
+      "Pons",
+      "Posterior commissure",
+      "Right abducens nerve",
+      "Right accessory nerve",
+      "Right amygdala",
+      "Right angular gyrus",
+      "Right anterior nucleus of hypothalamus",
+      "Right anterior orbital gyrus",
+      "Right arcuate nucleus of hypothalamus",
+      "Right caudate nucleus",
+      "Right cerebral crus",
+      "Right choroid plexus",
+      "Right cingulate gyrus",
+      "Right cuneus",
+      "Right dorsomedial nucleus of hypothalamus",
+      "Right facial nerve",
+      "Right fornix",
+      "Right fusiform gyrus",
+      "Right globus pallidus",
+      "Right glossopharyngeal nerve",
+      "Right half of tentorium cerebelli",
+      "Right hippocampus",
+      "Right hypoglossal nerve",
+      "Right inferior colliculus",
+      "Right inferior frontal gyrus",
+      "Right inferior temporal gyrus",
+      "Right insula",
+      "Right internal capsule",
+      "Right lateral geniculate body",
+      "Right lateral hypothalamic nucleus",
+      "Right lateral occipital gyrus",
+      "Right lateral orbital gyrus",
+      "Right lateral preoptic nucleus",
+      "Right lateral ventricle",
+      "Right lingual gyrus",
+      "Right mammillothalamic tract",
+      "Right mandibular nerve",
+      "Right maxillary nerve",
+      "Right medial geniculate body",
+      "Right medial orbital gyrus",
+      "Right medial preoptic nucleus",
+      "Right middle frontal gyrus",
+      "Right middle temporal gyrus",
+      "Right oculomotor nerve",
+      "Right olfactory nerve",
+      "Right olfactory tract",
+      "Right ophthalmic nerve",
+      "Right optic nerve",
+      "Right optic tract",
+      "Right parahippocampal gyrus",
+      "Right paraventricular nucleus of hypothalamus",
+      "Right periventricular nucleus",
+      "Right postcentral gyrus",
+      "Right posterior nucleus of hypothalamus",
+      "Right posterior orbital gyrus",
+      "Right precentral gyrus",
+      "Right precuneus",
+      "Right putamen",
+      "Right red nucleus",
+      "Right straight gyrus",
+      "Right stria medullaris of thalamus",
+      "Right stria terminalis",
+      "Right substantia nigra",
+      "Right subthalamic nucleus",
+      "Right superior colliculus",
+      "Right superior frontal gyrus",
+      "Right superior occipital gyrus",
+      "Right superior parietal lobule",
+      "Right superior temporal gyrus",
+      "Right suprachiasmatic nucleus",
+      "Right supramarginal gyrus",
+      "Right supraoptic nucleus",
+      "Right thalamus",
+      "Right trigeminal nerve",
+      "Right trochlear nerve",
+      "Right vagus nerve",
+      "Right ventromedial nucleus of hypothalamus",
+      "Right vestibulocochlear nerve",
+      "Septum of telencephalon",
+      "Spinal cord",
+      "Third ventricle",
+      "Tuber cinereum",
+      "White matter of left temporal lobe",
+      "White matter of right temporal lobe"
+    ],
+    "source_triangles": 1244246,
+    "source_vertices": 690390
+  },
+  "canonical_checks": {
+    "Arcuate fasciculus": {
+      "bp3d": false,
+      "needle": "arcuate fascic",
+      "spike_default": false
+    },
+    "Central canal of spinal cord": {
+      "bp3d": true,
+      "needle": "central canal",
+      "spike_default": false
+    },
+    "Cerebellar peduncles": {
+      "bp3d": false,
+      "needle": "cerebellar peduncle",
+      "spike_default": false
+    },
+    "Cingulum": {
+      "bp3d": false,
+      "needle": "cingulum",
+      "spike_default": false
+    },
+    "Claustrum": {
+      "bp3d": false,
+      "needle": "claustrum",
+      "spike_default": true
+    },
+    "Corona radiata": {
+      "bp3d": false,
+      "needle": "corona radiata",
+      "spike_default": false
+    },
+    "Cranial nerve nuclei": {
+      "bp3d": false,
+      "needle": "nucleus of cranial",
+      "spike_default": false
+    },
+    "Deep cerebellar nuclei": {
+      "bp3d": false,
+      "needle": "deep cerebellar",
+      "spike_default": true
+    },
+    "Inferior longitudinal fasciculus": {
+      "bp3d": false,
+      "needle": "inferior longitudinal",
+      "spike_default": false
+    },
+    "Inferior olive": {
+      "bp3d": false,
+      "needle": "inferior olive",
+      "spike_default": true
+    },
+    "Nucleus accumbens": {
+      "bp3d": false,
+      "needle": "accumbens",
+      "spike_default": true
+    },
+    "Olfactory tract": {
+      "bp3d": true,
+      "needle": "olfactory tract",
+      "spike_default": false
+    },
+    "Optic radiation": {
+      "bp3d": false,
+      "needle": "optic radiation",
+      "spike_default": false
+    },
+    "Pineal body": {
+      "bp3d": true,
+      "needle": "pineal",
+      "spike_default": false
+    },
+    "Pituitary gland": {
+      "bp3d": true,
+      "needle": "pituitary",
+      "spike_default": false
+    },
+    "Septum pellucidum": {
+      "bp3d": false,
+      "needle": "septum pellucidum",
+      "spike_default": true
+    },
+    "Superior longitudinal fasciculus": {
+      "bp3d": false,
+      "needle": "superior longitudinal",
+      "spike_default": false
+    },
+    "Uncinate fasciculus": {
+      "bp3d": false,
+      "needle": "uncinate",
+      "spike_default": false
+    }
+  },
+  "domain_scores": [
+    {
+      "bp3d_rationale": "25 named cortical units per hemisphere (24 gyri/lobules plus insula); lobe views must be derived by metadata aggregation. Missing separate paracentral lobule, transverse temporal gyri and inferior-frontal subdivisions.",
+      "bp3d_score_0_5": 4.3,
+      "domain": "Cerebral cortex and cortical granularity",
+      "spike_rationale": "Six cortical units per hemisphere (five lobes plus insula), useful for orientation but too coarse for gyral teaching/localisation.",
+      "spike_score_0_5": 2.0,
+      "weight": 15
+    },
+    {
+      "bp3d_rationale": "Basal ganglia cores plus 12 paired Hypothalamic/preoptic/periventricular nuclei, geniculate bodies, colliculi, habenula and pineal body. Missing claustrum, nucleus accumbens, thalamic nuclear subdivisions and basal-forebrain nuclei.",
+      "bp3d_score_0_5": 4.0,
+      "domain": "Deep gray matter, diencephalon and Hypothalamus",
+      "spike_rationale": "Strong basal-ganglia set and uniquely includes claustrum and nucleus accumbens, but almost no Hypothalamic nuclear detail.",
+      "spike_score_0_5": 3.0,
+      "weight": 15
+    },
+    {
+      "bp3d_rationale": "Pons, medulla, cerebral crura, colliculi, red nuclei and substantia nigra are separate; cerebellum remains one gross mesh. Missing nearly all cranial-nerve/reticular/tegmental nuclei, inferior olive, cerebellar lobes/vermis/hemispheres, deep cerebellar nuclei and peduncles.",
+      "bp3d_score_0_5": 2.7,
+      "domain": "Brainstem and cerebellum",
+      "spike_rationale": "One gross brainstem and cerebellum, but uniquely includes inferior olives and deep cerebellar nuclei.",
+      "spike_score_0_5": 2.5,
+      "weight": 15
+    },
+    {
+      "bp3d_rationale": "Lateral/third/fourth ventricles, aqueduct, interventricular foramen, bilateral choroid plexus and central canal are selectable.",
+      "bp3d_score_0_5": 4.8,
+      "domain": "Ventricles and CSF spaces",
+      "spike_rationale": "Same ventricular core except no separate central canal.",
+      "spike_score_0_5": 4.4,
+      "weight": 10
+    },
+    {
+      "bp3d_rationale": "Corpus callosum, anterior/posterior commissures, fornices, internal capsules, striae, mammillothalamic tracts and collicular brachia. No named long association bundles, corona radiata subdivisions, optic/auditory radiations, lemnisci or spinal tracts; temporal white-matter labels are geometrically suspect and hidden.",
+      "bp3d_score_0_5": 2.5,
+      "domain": "White matter, commissures and named internal pathways",
+      "spike_rationale": "Core commissures/fornices/internal capsules and septum pellucidum, but fewer small named bundles and the same absence of tract-level pathway geometry.",
+      "spike_score_0_5": 2.0,
+      "weight": 15
+    },
+    {
+      "bp3d_rationale": "All 12 nerves are present bilaterally at proximal/main-trunk level, plus optic/olfactory tracts and trigeminal divisions. Distal vagal geometry needs adjudication and remains hidden.",
+      "bp3d_score_0_5": 4.4,
+      "domain": "Cranial nerves I\u2013XII",
+      "spike_rationale": "Most main nerves plus distal trigeminal branches; no explicit vestibulocochlear/cochlear/vestibular nerve and no olfactory tract in the inventory.",
+      "spike_score_0_5": 3.3,
+      "weight": 15
+    },
+    {
+      "bp3d_rationale": "Whole cord, cauda equina and central canal only. No cord levels/segments, gray-matter horns/columns, white-matter funiculi/tracts, rootlets or spinal meninges as selectable CNS anatomy.",
+      "bp3d_score_0_5": 1.4,
+      "domain": "Spinal cord and cauda equina",
+      "spike_rationale": "Whole cord and cauda equina only within the app-default CNS set; roots/ganglia exist elsewhere in the full spike but are peripheral/spinal-nerve context rather than internal cord anatomy.",
+      "spike_score_0_5": 1.3,
+      "weight": 10
+    },
+    {
+      "bp3d_rationale": "Falx cerebri, a whole-brain dural shell (hidden by default), pituitary and pineal context; only the right half of tentorium cerebelli exists in the selected source set.",
+      "bp3d_score_0_5": 2.4,
+      "domain": "Meninges and immediate context",
+      "spike_rationale": "Falx and a tentorium concept are present, but no pineal/pituitary context in the spike inventory.",
+      "spike_score_0_5": 3.0,
+      "weight": 5
+    }
+  ],
+  "method": {
+    "bp3d_inventory": "/home/user/neuraxia/research/sprint-1b/curation/bp3d-cns-concepts.json",
+    "score_scale": "0\u20135 per weighted teaching domain, normalised to 100",
+    "spike_comparison_set": "Sprint 1 app-default categories: axis, cortex, cranial, deep, meninges, ventricles, white",
+    "spike_inventory": "/home/user/neuraxia/research/body-atlas/nervous.glb"
+  },
+  "spike": {
+    "all_inventory": [
+      {
+        "app_default": true,
+        "category": "axis",
+        "name": "Brainstem",
+        "triangles": 21673,
+        "vertices": 10846
+      },
+      {
+        "app_default": true,
+        "category": "axis",
+        "name": "Cerebellum",
+        "triangles": 45862,
+        "vertices": 22997
+      },
+      {
+        "app_default": true,
+        "category": "meninges",
+        "name": "Falx cerebri",
+        "triangles": 3675,
+        "vertices": 1744
+      },
+      {
+        "app_default": true,
+        "category": "cortex",
+        "name": "Left frontal lobe",
+        "triangles": 19882,
+        "vertices": 9337
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left ganglia of sympathetic trunk",
+        "triangles": 7934,
+        "vertices": 4003
+      },
+      {
+        "app_default": true,
+        "category": "cortex",
+        "name": "Left insula",
+        "triangles": 1534,
+        "vertices": 764
+      },
+      {
+        "app_default": true,
+        "category": "cortex",
+        "name": "Left limbic lobe",
+        "triangles": 3564,
+        "vertices": 1764
+      },
+      {
+        "app_default": true,
+        "category": "cortex",
+        "name": "Left occipital lobe",
+        "triangles": 8442,
+        "vertices": 4009
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Left optic tract",
+        "triangles": 2304,
+        "vertices": 1154
+      },
+      {
+        "app_default": true,
+        "category": "cortex",
+        "name": "Left parietal lobe",
+        "triangles": 11229,
+        "vertices": 5141
+      },
+      {
+        "app_default": false,
+        "category": "roots",
+        "name": "Left spinal ganglia",
+        "triangles": 1534,
+        "vertices": 809
+      },
+      {
+        "app_default": true,
+        "category": "cortex",
+        "name": "Left temporal lobe",
+        "triangles": 11574,
+        "vertices": 5649
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Optic chiasm",
+        "triangles": 1780,
+        "vertices": 894
+      },
+      {
+        "app_default": true,
+        "category": "cortex",
+        "name": "Right frontal lobe",
+        "triangles": 19896,
+        "vertices": 9343
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right ganglia of sympathetic trunk",
+        "triangles": 6534,
+        "vertices": 3303
+      },
+      {
+        "app_default": true,
+        "category": "cortex",
+        "name": "Right insula",
+        "triangles": 1536,
+        "vertices": 765
+      },
+      {
+        "app_default": true,
+        "category": "cortex",
+        "name": "Right limbic lobe",
+        "triangles": 3570,
+        "vertices": 1767
+      },
+      {
+        "app_default": true,
+        "category": "cortex",
+        "name": "Right occipital lobe",
+        "triangles": 8444,
+        "vertices": 4010
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Right optic tract",
+        "triangles": 2310,
+        "vertices": 1157
+      },
+      {
+        "app_default": true,
+        "category": "cortex",
+        "name": "Right parietal lobe",
+        "triangles": 11227,
+        "vertices": 5140
+      },
+      {
+        "app_default": false,
+        "category": "roots",
+        "name": "Right spinal ganglia",
+        "triangles": 1552,
+        "vertices": 818
+      },
+      {
+        "app_default": true,
+        "category": "cortex",
+        "name": "Right temporal lobe",
+        "triangles": 11574,
+        "vertices": 5650
+      },
+      {
+        "app_default": true,
+        "category": "white",
+        "name": "Septum pellucidum",
+        "triangles": 2154,
+        "vertices": 1064
+      },
+      {
+        "app_default": true,
+        "category": "axis",
+        "name": "Spinal cord",
+        "triangles": 3887,
+        "vertices": 1977
+      },
+      {
+        "app_default": true,
+        "category": "meninges",
+        "name": "Tentorium cerebelli",
+        "triangles": 4094,
+        "vertices": 2045
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Left thalamus",
+        "triangles": 1702,
+        "vertices": 853
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Right thalamus",
+        "triangles": 758,
+        "vertices": 381
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Left mammillary body",
+        "triangles": 204,
+        "vertices": 104
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Right mammillary body",
+        "triangles": 220,
+        "vertices": 112
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Left caudate nucleus",
+        "triangles": 2540,
+        "vertices": 1272
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Right caudate nucleus",
+        "triangles": 2564,
+        "vertices": 1284
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Left putamen",
+        "triangles": 4644,
+        "vertices": 2324
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Right putamen",
+        "triangles": 4568,
+        "vertices": 2286
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Left globus pallidus",
+        "triangles": 3112,
+        "vertices": 1558
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Right globus pallidus",
+        "triangles": 3086,
+        "vertices": 1545
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Left hippocampus",
+        "triangles": 980,
+        "vertices": 492
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Right hippocampus",
+        "triangles": 1020,
+        "vertices": 512
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Left amygdala",
+        "triangles": 382,
+        "vertices": 193
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Right amygdala",
+        "triangles": 384,
+        "vertices": 194
+      },
+      {
+        "app_default": true,
+        "category": "white",
+        "name": "Corpus callosum",
+        "triangles": 15932,
+        "vertices": 7997
+      },
+      {
+        "app_default": true,
+        "category": "white",
+        "name": "Left internal capsule",
+        "triangles": 8028,
+        "vertices": 4016
+      },
+      {
+        "app_default": true,
+        "category": "white",
+        "name": "Right internal capsule",
+        "triangles": 7942,
+        "vertices": 3973
+      },
+      {
+        "app_default": true,
+        "category": "white",
+        "name": "Left fornix",
+        "triangles": 4036,
+        "vertices": 2020
+      },
+      {
+        "app_default": true,
+        "category": "white",
+        "name": "Right fornix",
+        "triangles": 4068,
+        "vertices": 2036
+      },
+      {
+        "app_default": true,
+        "category": "white",
+        "name": "Commissure of fornix",
+        "triangles": 5886,
+        "vertices": 2945
+      },
+      {
+        "app_default": true,
+        "category": "white",
+        "name": "Anterior commissure",
+        "triangles": 812,
+        "vertices": 408
+      },
+      {
+        "app_default": true,
+        "category": "white",
+        "name": "Posterior commissure",
+        "triangles": 834,
+        "vertices": 419
+      },
+      {
+        "app_default": true,
+        "category": "ventricles",
+        "name": "Left lateral ventricle",
+        "triangles": 4492,
+        "vertices": 2248
+      },
+      {
+        "app_default": true,
+        "category": "ventricles",
+        "name": "Right lateral ventricle",
+        "triangles": 4504,
+        "vertices": 2254
+      },
+      {
+        "app_default": true,
+        "category": "ventricles",
+        "name": "Third ventricle",
+        "triangles": 3544,
+        "vertices": 1772
+      },
+      {
+        "app_default": true,
+        "category": "ventricles",
+        "name": "Fourth ventricle",
+        "triangles": 6504,
+        "vertices": 3254
+      },
+      {
+        "app_default": true,
+        "category": "ventricles",
+        "name": "Cerebral aqueduct",
+        "triangles": 506,
+        "vertices": 255
+      },
+      {
+        "app_default": true,
+        "category": "ventricles",
+        "name": "Interventricular foramen",
+        "triangles": 1068,
+        "vertices": 538
+      },
+      {
+        "app_default": true,
+        "category": "ventricles",
+        "name": "Left choroid plexus",
+        "triangles": 4470,
+        "vertices": 2237
+      },
+      {
+        "app_default": true,
+        "category": "ventricles",
+        "name": "Right choroid plexus",
+        "triangles": 4544,
+        "vertices": 2274
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Hypothalamus",
+        "triangles": 4026,
+        "vertices": 2021
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Left substantia nigra",
+        "triangles": 336,
+        "vertices": 170
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Right substantia nigra",
+        "triangles": 316,
+        "vertices": 160
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Left red nucleus",
+        "triangles": 334,
+        "vertices": 169
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Right red nucleus",
+        "triangles": 334,
+        "vertices": 169
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Left subthalamic nucleus",
+        "triangles": 252,
+        "vertices": 128
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Right subthalamic nucleus",
+        "triangles": 252,
+        "vertices": 128
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Left deep cerebellar nuclei",
+        "triangles": 434,
+        "vertices": 219
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Right deep cerebellar nuclei",
+        "triangles": 490,
+        "vertices": 247
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Left inferior olive",
+        "triangles": 238,
+        "vertices": 121
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Right inferior olive",
+        "triangles": 244,
+        "vertices": 124
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Left nucleus accumbens",
+        "triangles": 344,
+        "vertices": 174
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Right nucleus accumbens",
+        "triangles": 352,
+        "vertices": 178
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Left claustrum",
+        "triangles": 3532,
+        "vertices": 1746
+      },
+      {
+        "app_default": true,
+        "category": "deep",
+        "name": "Right claustrum",
+        "triangles": 3668,
+        "vertices": 1812
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left sympathetic nerves",
+        "triangles": 1440,
+        "vertices": 758
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right sympathetic nerves",
+        "triangles": 1416,
+        "vertices": 746
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left sympathetic trunk",
+        "triangles": 1104,
+        "vertices": 554
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right sympathetic trunk",
+        "triangles": 1032,
+        "vertices": 518
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Left abducens nerve (VI)",
+        "triangles": 204,
+        "vertices": 106
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Right abducens nerve (VI)",
+        "triangles": 192,
+        "vertices": 100
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Left facial nerve (VII)",
+        "triangles": 1548,
+        "vertices": 798
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Right facial nerve (VII)",
+        "triangles": 1536,
+        "vertices": 792
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Left glossopharyngeal nerve (IX)",
+        "triangles": 588,
+        "vertices": 308
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Right glossopharyngeal nerve (IX)",
+        "triangles": 588,
+        "vertices": 308
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Left hypoglossal nerve (XII)",
+        "triangles": 708,
+        "vertices": 370
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Right hypoglossal nerve (XII)",
+        "triangles": 732,
+        "vertices": 382
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Left oculomotor nerve (III)",
+        "triangles": 432,
+        "vertices": 230
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Right oculomotor nerve (III)",
+        "triangles": 432,
+        "vertices": 230
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Left olfactory nerve (I)",
+        "triangles": 636,
+        "vertices": 364
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Right olfactory nerve (I)",
+        "triangles": 648,
+        "vertices": 370
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Left optic nerve (II)",
+        "triangles": 120,
+        "vertices": 62
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Right optic nerve (II)",
+        "triangles": 120,
+        "vertices": 62
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Left trigeminal nerve (V)",
+        "triangles": 156,
+        "vertices": 82
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Left maxillary nerve",
+        "triangles": 456,
+        "vertices": 238
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Left meningeal branch of maxillary nerve",
+        "triangles": 492,
+        "vertices": 252
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Left ophthalmic nerve",
+        "triangles": 372,
+        "vertices": 196
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Right trigeminal nerve (V)",
+        "triangles": 156,
+        "vertices": 82
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Left anterior division of mandibular nerve",
+        "triangles": 48,
+        "vertices": 26
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Left buccal nerve",
+        "triangles": 144,
+        "vertices": 76
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Right anterior division of mandibular nerve",
+        "triangles": 36,
+        "vertices": 20
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Right buccal nerve",
+        "triangles": 144,
+        "vertices": 76
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Left posterior division of mandibular nerve",
+        "triangles": 132,
+        "vertices": 68
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Left inferior alveolar nerve",
+        "triangles": 756,
+        "vertices": 402
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Left mental nerve",
+        "triangles": 156,
+        "vertices": 84
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Left nerve to mylohyoid muscle",
+        "triangles": 144,
+        "vertices": 76
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Left lingual nerve",
+        "triangles": 192,
+        "vertices": 98
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Right posterior division of mandibular nerve",
+        "triangles": 108,
+        "vertices": 56
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Right inferior alveolar nerve",
+        "triangles": 756,
+        "vertices": 402
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Right mental nerve",
+        "triangles": 156,
+        "vertices": 84
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Right nerve to mylohyoid muscle",
+        "triangles": 144,
+        "vertices": 76
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Right lingual nerve",
+        "triangles": 192,
+        "vertices": 98
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Right maxillary nerve",
+        "triangles": 432,
+        "vertices": 226
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Right meningeal branch of maxillary nerve",
+        "triangles": 576,
+        "vertices": 294
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Right ophthalmic nerve",
+        "triangles": 372,
+        "vertices": 196
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Left trochlear nerve (IV)",
+        "triangles": 240,
+        "vertices": 122
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Right trochlear nerve (IV)",
+        "triangles": 228,
+        "vertices": 116
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Left vagus nerve (X)",
+        "triangles": 876,
+        "vertices": 452
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Right vagus nerve (X)",
+        "triangles": 2784,
+        "vertices": 1434
+      },
+      {
+        "app_default": true,
+        "category": "axis",
+        "name": "Cauda equina",
+        "triangles": 696,
+        "vertices": 366
+      },
+      {
+        "app_default": false,
+        "category": "roots",
+        "name": "Left anterior root of spinal nerve",
+        "triangles": 876,
+        "vertices": 480
+      },
+      {
+        "app_default": false,
+        "category": "roots",
+        "name": "Right anterior root of spinal nerve",
+        "triangles": 900,
+        "vertices": 492
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left lateral pectoral nerve",
+        "triangles": 744,
+        "vertices": 382
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right lateral pectoral nerve",
+        "triangles": 744,
+        "vertices": 382
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left musculocutaneous nerve",
+        "triangles": 156,
+        "vertices": 80
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left lateral antebrachial cutaneous nerve",
+        "triangles": 192,
+        "vertices": 98
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right musculocutaneous nerve",
+        "triangles": 144,
+        "vertices": 74
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right lateral antebrachial cutaneous nerve",
+        "triangles": 180,
+        "vertices": 92
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left medial antebrachial cutaneous nerve",
+        "triangles": 228,
+        "vertices": 116
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left anterior branch of medial antebrachial cutaneous nerve",
+        "triangles": 96,
+        "vertices": 50
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left posterior branch of medial antebrachial cutaneous nerve",
+        "triangles": 180,
+        "vertices": 92
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right medial antebrachial cutaneous nerve",
+        "triangles": 216,
+        "vertices": 110
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right anterior branch of medial antebrachial cutaneous nerve",
+        "triangles": 96,
+        "vertices": 50
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right posterior branch of medial antebrachial cutaneous nerve",
+        "triangles": 180,
+        "vertices": 92
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left medial brachial cutaneous nerve",
+        "triangles": 276,
+        "vertices": 140
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right medial brachial cutaneous nerve",
+        "triangles": 240,
+        "vertices": 122
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left medial pectoral nerve",
+        "triangles": 252,
+        "vertices": 130
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right medial pectoral nerve",
+        "triangles": 264,
+        "vertices": 136
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left ulnar nerve",
+        "triangles": 420,
+        "vertices": 212
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left deep branch of ulnar nerve",
+        "triangles": 156,
+        "vertices": 80
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left dorsal branch of ulnar nerve",
+        "triangles": 120,
+        "vertices": 64
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left dorsal digital branches of ulnar nerve",
+        "triangles": 288,
+        "vertices": 150
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left muscular branches of ulnar nerve",
+        "triangles": 60,
+        "vertices": 34
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left palmar branch of ulnar nerve",
+        "triangles": 132,
+        "vertices": 68
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left superficial branch of ulnar nerve",
+        "triangles": 72,
+        "vertices": 38
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left common palmar digital branches of ulnar nerve",
+        "triangles": 168,
+        "vertices": 90
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left proper palmar digital branches of ulnar nerve",
+        "triangles": 384,
+        "vertices": 198
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right ulnar nerve",
+        "triangles": 384,
+        "vertices": 194
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right deep branch of ulnar nerve",
+        "triangles": 156,
+        "vertices": 80
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right dorsal branch of ulnar nerve",
+        "triangles": 144,
+        "vertices": 76
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right dorsal digital branches of ulnar nerve",
+        "triangles": 324,
+        "vertices": 168
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right muscular branches of ulnar nerve",
+        "triangles": 48,
+        "vertices": 28
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right palmar branch of ulnar nerve",
+        "triangles": 120,
+        "vertices": 62
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right superficial branch of ulnar nerve",
+        "triangles": 60,
+        "vertices": 32
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right common palmar digital branches of ulnar nerve",
+        "triangles": 156,
+        "vertices": 84
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right proper palmar digital branches of ulnar nerve",
+        "triangles": 384,
+        "vertices": 198
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left axillary nerve",
+        "triangles": 144,
+        "vertices": 74
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left muscular branches of axillary nerve",
+        "triangles": 108,
+        "vertices": 56
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left superior lateral brachial cutaneous nerve",
+        "triangles": 192,
+        "vertices": 98
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right axillary nerve",
+        "triangles": 132,
+        "vertices": 68
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right muscular branches of axillary nerve",
+        "triangles": 108,
+        "vertices": 56
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right superior lateral brachial cutaneous nerve",
+        "triangles": 204,
+        "vertices": 104
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left inferior subscapular nerve",
+        "triangles": 228,
+        "vertices": 118
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right inferior subscapular nerve",
+        "triangles": 240,
+        "vertices": 124
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left radial nerve",
+        "triangles": 276,
+        "vertices": 140
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left deep branch of radial nerve",
+        "triangles": 228,
+        "vertices": 116
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left posterior interosseous nerve of forearm",
+        "triangles": 96,
+        "vertices": 50
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left inferior lateral brachial cutaneous nerve",
+        "triangles": 60,
+        "vertices": 32
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left muscular branches of radial nerve",
+        "triangles": 336,
+        "vertices": 178
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left posterior antebrachial cutaneous nerve",
+        "triangles": 204,
+        "vertices": 104
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left superficial branch of radial nerve",
+        "triangles": 360,
+        "vertices": 188
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left dorsal digital branches of radial nerve",
+        "triangles": 888,
+        "vertices": 458
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right radial nerve",
+        "triangles": 288,
+        "vertices": 146
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right deep branch of radial nerve",
+        "triangles": 240,
+        "vertices": 122
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right posterior interosseous nerve of forearm",
+        "triangles": 168,
+        "vertices": 86
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right inferior lateral brachial cutaneous nerve",
+        "triangles": 60,
+        "vertices": 32
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right muscular branches of radial nerve",
+        "triangles": 324,
+        "vertices": 172
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right posterior antebrachial cutaneous nerve",
+        "triangles": 240,
+        "vertices": 122
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right superficial branch of radial nerve",
+        "triangles": 396,
+        "vertices": 206
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right dorsal digital branches of radial nerve",
+        "triangles": 900,
+        "vertices": 464
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left superior subscapular nerve",
+        "triangles": 132,
+        "vertices": 68
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right thoracodorsal nerve",
+        "triangles": 444,
+        "vertices": 228
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left thoracodorsal nerve",
+        "triangles": 456,
+        "vertices": 234
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left median nerve",
+        "triangles": 492,
+        "vertices": 248
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left communicating branch of median nerve with ulnar nerve",
+        "triangles": 84,
+        "vertices": 44
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left anterior interosseous nerve of forearm",
+        "triangles": 144,
+        "vertices": 74
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left common palmar digital branches of median nerve",
+        "triangles": 180,
+        "vertices": 96
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left proper palmar digital branches of median nerve",
+        "triangles": 780,
+        "vertices": 404
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left muscular branches of median nerve",
+        "triangles": 96,
+        "vertices": 56
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left palmar branch of median nerve",
+        "triangles": 144,
+        "vertices": 74
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right median nerve",
+        "triangles": 468,
+        "vertices": 236
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right communicating branch of median nerve with ulnar nerve",
+        "triangles": 84,
+        "vertices": 44
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right anterior interosseous nerve of forearm",
+        "triangles": 168,
+        "vertices": 86
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right common palmar digital branches of median nerve",
+        "triangles": 180,
+        "vertices": 96
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right proper palmar digital branches of median nerve",
+        "triangles": 780,
+        "vertices": 404
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right muscular branches of median nerve",
+        "triangles": 96,
+        "vertices": 56
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right palmar branch of median nerve",
+        "triangles": 132,
+        "vertices": 68
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left posterior cord of brachial plexus",
+        "triangles": 48,
+        "vertices": 26
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right posterior cord of brachial plexus",
+        "triangles": 48,
+        "vertices": 26
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left dorsal scapular nerve",
+        "triangles": 264,
+        "vertices": 134
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right dorsal scapular nerve",
+        "triangles": 276,
+        "vertices": 140
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left long thoracic nerve",
+        "triangles": 588,
+        "vertices": 298
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right long thoracic nerve",
+        "triangles": 480,
+        "vertices": 244
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left subclavian nerve",
+        "triangles": 96,
+        "vertices": 50
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right subclavian nerve",
+        "triangles": 96,
+        "vertices": 50
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left suprascapular nerve",
+        "triangles": 552,
+        "vertices": 286
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right suprascapular nerve",
+        "triangles": 564,
+        "vertices": 292
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left inferior trunk of brachial plexus",
+        "triangles": 48,
+        "vertices": 26
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left anterior division of inferior trunk of brachial plexus",
+        "triangles": 60,
+        "vertices": 32
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left posterior division of inferior trunk of brachial plexus",
+        "triangles": 72,
+        "vertices": 38
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right inferior trunk of brachial plexus",
+        "triangles": 48,
+        "vertices": 26
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right anterior division of inferior trunk of brachial plexus",
+        "triangles": 60,
+        "vertices": 32
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right posterior division of inferior trunk of brachial plexus",
+        "triangles": 72,
+        "vertices": 38
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left middle trunk of brachial plexus",
+        "triangles": 60,
+        "vertices": 32
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left anterior division of middle trunk of brachial plexus",
+        "triangles": 72,
+        "vertices": 38
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left posterior division of middle trunk of brachial plexus",
+        "triangles": 60,
+        "vertices": 32
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right middle trunk of brachial plexus",
+        "triangles": 60,
+        "vertices": 32
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right anterior division of middle trunk of brachial plexus",
+        "triangles": 72,
+        "vertices": 38
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right posterior division of middle trunk of brachial plexus",
+        "triangles": 48,
+        "vertices": 26
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left roots of brachial plexus",
+        "triangles": 504,
+        "vertices": 266
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right roots of brachial plexus",
+        "triangles": 480,
+        "vertices": 254
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left superior trunk of brachial plexus",
+        "triangles": 84,
+        "vertices": 44
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left anterior division of superior trunk of brachial plexus",
+        "triangles": 72,
+        "vertices": 38
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left posterior division of superior trunk of brachial plexus",
+        "triangles": 48,
+        "vertices": 26
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right superior trunk of brachial plexus",
+        "triangles": 84,
+        "vertices": 44
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right anterior division of superior trunk of brachial plexus",
+        "triangles": 72,
+        "vertices": 38
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right posterior division of superior trunk of brachial plexus",
+        "triangles": 36,
+        "vertices": 20
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Left accessory nerve (XI)",
+        "triangles": 840,
+        "vertices": 432
+      },
+      {
+        "app_default": true,
+        "category": "cranial",
+        "name": "Right accessory nerve (XI)",
+        "triangles": 816,
+        "vertices": 420
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left ilio-inguinal nerve",
+        "triangles": 480,
+        "vertices": 242
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right ilio-inguinal nerve",
+        "triangles": 468,
+        "vertices": 236
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left iliohypogastric nerve",
+        "triangles": 336,
+        "vertices": 172
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right iliohypogastric nerve",
+        "triangles": 264,
+        "vertices": 136
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left genitofemoral nerve",
+        "triangles": 180,
+        "vertices": 94
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left femoral branch of genitofemoral nerve",
+        "triangles": 396,
+        "vertices": 202
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left genital branch of genitofemoral nerve",
+        "triangles": 324,
+        "vertices": 164
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right genitofemoral nerve",
+        "triangles": 204,
+        "vertices": 106
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right femoral branch of genitofemoral nerve",
+        "triangles": 396,
+        "vertices": 202
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right genital branch of genitofemoral nerve",
+        "triangles": 312,
+        "vertices": 158
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left obturator nerve",
+        "triangles": 504,
+        "vertices": 258
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left anterior branch of obturator nerve",
+        "triangles": 240,
+        "vertices": 122
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left posterior branch of obturator nerve",
+        "triangles": 132,
+        "vertices": 68
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right obturator nerve",
+        "triangles": 492,
+        "vertices": 252
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right anterior branch of obturator nerve",
+        "triangles": 264,
+        "vertices": 134
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right posterior branch of obturator nerve",
+        "triangles": 108,
+        "vertices": 56
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left femoral nerve",
+        "triangles": 1164,
+        "vertices": 588
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left anterior cutaneous branches of femoral nerve",
+        "triangles": 156,
+        "vertices": 80
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left saphenous nerve",
+        "triangles": 756,
+        "vertices": 386
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left infrapatellar branch of saphenous nerve",
+        "triangles": 60,
+        "vertices": 32
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left medial crural cutaneous branches of saphenous nerve",
+        "triangles": 96,
+        "vertices": 50
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right femoral nerve",
+        "triangles": 804,
+        "vertices": 408
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right anterior cutaneous branches of femoral nerve",
+        "triangles": 156,
+        "vertices": 80
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right saphenous nerve",
+        "triangles": 804,
+        "vertices": 410
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right infrapatellar branch of saphenous nerve",
+        "triangles": 60,
+        "vertices": 32
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right medial crural cutaneous branches of saphenous nerve",
+        "triangles": 96,
+        "vertices": 50
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left lateral femoral cutaneous nerve",
+        "triangles": 864,
+        "vertices": 438
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right lateral femoral cutaneous nerve",
+        "triangles": 984,
+        "vertices": 498
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right superior subscapular nerve",
+        "triangles": 132,
+        "vertices": 68
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left anterior root of posterior femoral cutaneous nerve",
+        "triangles": 228,
+        "vertices": 120
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right anterior root of posterior femoral cutaneous nerve",
+        "triangles": 180,
+        "vertices": 96
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left nerve to piriformis muscle",
+        "triangles": 168,
+        "vertices": 88
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right nerve to piriformis muscle",
+        "triangles": 156,
+        "vertices": 82
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left nerve to quadratus femoris muscle",
+        "triangles": 540,
+        "vertices": 278
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right nerve to quadratus femoris muscle",
+        "triangles": 516,
+        "vertices": 266
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right posterior femoral cutaneous nerve",
+        "triangles": 360,
+        "vertices": 186
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left posterior root of posterior femoral cutaneous nerve",
+        "triangles": 420,
+        "vertices": 216
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right posterior root of posterior femoral cutaneous nerve",
+        "triangles": 312,
+        "vertices": 162
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left posterior femoral cutaneous nerve",
+        "triangles": 384,
+        "vertices": 198
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left sciatic nerve",
+        "triangles": 516,
+        "vertices": 264
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left common fibular nerve",
+        "triangles": 228,
+        "vertices": 116
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left deep fibular nerve",
+        "triangles": 492,
+        "vertices": 248
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left dorsal digital branches of deep fibular nerve",
+        "triangles": 228,
+        "vertices": 118
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left muscular branches of deep fibular nerve",
+        "triangles": 48,
+        "vertices": 26
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left superficial fibular nerve",
+        "triangles": 156,
+        "vertices": 80
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left dorsal digital branches of superficial fibular nerve",
+        "triangles": 612,
+        "vertices": 320
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left intermediate dorsal cutaneous nerve of foot",
+        "triangles": 216,
+        "vertices": 112
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left medial dorsal cutaneous nerve of foot",
+        "triangles": 288,
+        "vertices": 152
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left sural communicating branch of common fibular nerve",
+        "triangles": 108,
+        "vertices": 56
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left tibial nerve",
+        "triangles": 408,
+        "vertices": 206
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left lateral plantar nerve",
+        "triangles": 96,
+        "vertices": 50
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left common plantar digital branches of lateral plantar nerve",
+        "triangles": 96,
+        "vertices": 54
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left proper plantar digital branches of lateral plantar nerve",
+        "triangles": 444,
+        "vertices": 232
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left medial plantar nerve",
+        "triangles": 108,
+        "vertices": 58
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left common plantar digital branches of medial plantar nerve",
+        "triangles": 216,
+        "vertices": 114
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left proper plantar digital branches of medial plantar nerve",
+        "triangles": 504,
+        "vertices": 262
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left medial sural cutaneous nerve",
+        "triangles": 60,
+        "vertices": 32
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left sural nerve",
+        "triangles": 468,
+        "vertices": 240
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right sciatic nerve",
+        "triangles": 588,
+        "vertices": 300
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right common fibular nerve",
+        "triangles": 216,
+        "vertices": 110
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right deep fibular nerve",
+        "triangles": 456,
+        "vertices": 230
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right dorsal digital branches of deep fibular nerve",
+        "triangles": 180,
+        "vertices": 94
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right muscular branches of deep fibular nerve",
+        "triangles": 48,
+        "vertices": 26
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right superficial fibular nerve",
+        "triangles": 180,
+        "vertices": 92
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right dorsal digital branches of superficial fibular nerve",
+        "triangles": 540,
+        "vertices": 284
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right intermediate dorsal cutaneous nerve of foot",
+        "triangles": 216,
+        "vertices": 112
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right medial dorsal cutaneous nerve of foot",
+        "triangles": 252,
+        "vertices": 134
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right sural communicating branch of common fibular nerve",
+        "triangles": 108,
+        "vertices": 56
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right tibial nerve",
+        "triangles": 396,
+        "vertices": 200
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right lateral plantar nerve",
+        "triangles": 96,
+        "vertices": 50
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right common plantar digital branches of lateral plantar nerve",
+        "triangles": 96,
+        "vertices": 54
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right proper plantar digital branches of lateral plantar nerve",
+        "triangles": 408,
+        "vertices": 214
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right medial plantar nerve",
+        "triangles": 108,
+        "vertices": 58
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right common plantar digital branches of medial plantar nerve",
+        "triangles": 204,
+        "vertices": 108
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right proper plantar digital branches of medial plantar nerve",
+        "triangles": 492,
+        "vertices": 256
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right medial sural cutaneous nerve",
+        "triangles": 60,
+        "vertices": 32
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right sural nerve",
+        "triangles": 456,
+        "vertices": 234
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left pudendal nerve",
+        "triangles": 408,
+        "vertices": 210
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right pudendal nerve",
+        "triangles": 408,
+        "vertices": 210
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left superior gluteal nerve",
+        "triangles": 420,
+        "vertices": 216
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right superior gluteal nerve",
+        "triangles": 360,
+        "vertices": 186
+      },
+      {
+        "app_default": false,
+        "category": "roots",
+        "name": "Left posterior root of spinal nerve",
+        "triangles": 1104,
+        "vertices": 594
+      },
+      {
+        "app_default": false,
+        "category": "roots",
+        "name": "Right posterior root of spinal nerve",
+        "triangles": 1116,
+        "vertices": 600
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Left intercostal nerves",
+        "triangles": 4812,
+        "vertices": 2428
+      },
+      {
+        "app_default": false,
+        "category": "peripheral",
+        "name": "Right intercostal nerves",
+        "triangles": 4776,
+        "vertices": 2410
+      }
+    ],
+    "all_meshes": 309,
+    "all_triangles": 426563,
+    "all_vertices": 212202,
+    "categories": {
+      "axis": 4,
+      "cortex": 12,
+      "cranial": 45,
+      "deep": 29,
+      "meninges": 2,
+      "ventricles": 8,
+      "white": 9
+    },
+    "cranial_nerve_presence": {
+      "I": {
+        "matches": [
+          "Left olfactory nerve (I)",
+          "Right olfactory nerve (I)"
+        ],
+        "needle": "olfactory",
+        "present": true
+      },
+      "II": {
+        "matches": [
+          "Left optic nerve (II)",
+          "Right optic nerve (II)"
+        ],
+        "needle": "optic nerve",
+        "present": true
+      },
+      "III": {
+        "matches": [
+          "Left oculomotor nerve (III)",
+          "Right oculomotor nerve (III)"
+        ],
+        "needle": "oculomotor",
+        "present": true
+      },
+      "IV": {
+        "matches": [
+          "Left trochlear nerve (IV)",
+          "Right trochlear nerve (IV)"
+        ],
+        "needle": "trochlear",
+        "present": true
+      },
+      "IX": {
+        "matches": [
+          "Left glossopharyngeal nerve (IX)",
+          "Right glossopharyngeal nerve (IX)"
+        ],
+        "needle": "glossopharyngeal",
+        "present": true
+      },
+      "V": {
+        "matches": [
+          "Left trigeminal nerve (V)",
+          "Right trigeminal nerve (V)"
+        ],
+        "needle": "trigeminal",
+        "present": true
+      },
+      "VI": {
+        "matches": [
+          "Left abducens nerve (VI)",
+          "Right abducens nerve (VI)"
+        ],
+        "needle": "abducens",
+        "present": true
+      },
+      "VII": {
+        "matches": [
+          "Left facial nerve (VII)",
+          "Right facial nerve (VII)"
+        ],
+        "needle": "facial nerve",
+        "present": true
+      },
+      "VIII": {
+        "matches": [],
+        "needle": "vestibulocochlear",
+        "present": false
+      },
+      "X": {
+        "matches": [
+          "Left vagus nerve (X)",
+          "Right vagus nerve (X)"
+        ],
+        "needle": "vagus",
+        "present": true
+      },
+      "XI": {
+        "matches": [
+          "Left accessory nerve (XI)",
+          "Right accessory nerve (XI)"
+        ],
+        "needle": "accessory nerve",
+        "present": true
+      },
+      "XII": {
+        "matches": [
+          "Left hypoglossal nerve (XII)",
+          "Right hypoglossal nerve (XII)"
+        ],
+        "needle": "hypoglossal",
+        "present": true
+      }
+    },
+    "cranial_nerves_present": 11,
+    "default_meshes": 109,
+    "default_names": [
+      "Brainstem",
+      "Cerebellum",
+      "Falx cerebri",
+      "Left frontal lobe",
+      "Left insula",
+      "Left limbic lobe",
+      "Left occipital lobe",
+      "Left optic tract",
+      "Left parietal lobe",
+      "Left temporal lobe",
+      "Optic chiasm",
+      "Right frontal lobe",
+      "Right insula",
+      "Right limbic lobe",
+      "Right occipital lobe",
+      "Right optic tract",
+      "Right parietal lobe",
+      "Right temporal lobe",
+      "Septum pellucidum",
+      "Spinal cord",
+      "Tentorium cerebelli",
+      "Left thalamus",
+      "Right thalamus",
+      "Left mammillary body",
+      "Right mammillary body",
+      "Left caudate nucleus",
+      "Right caudate nucleus",
+      "Left putamen",
+      "Right putamen",
+      "Left globus pallidus",
+      "Right globus pallidus",
+      "Left hippocampus",
+      "Right hippocampus",
+      "Left amygdala",
+      "Right amygdala",
+      "Corpus callosum",
+      "Left internal capsule",
+      "Right internal capsule",
+      "Left fornix",
+      "Right fornix",
+      "Commissure of fornix",
+      "Anterior commissure",
+      "Posterior commissure",
+      "Left lateral ventricle",
+      "Right lateral ventricle",
+      "Third ventricle",
+      "Fourth ventricle",
+      "Cerebral aqueduct",
+      "Interventricular foramen",
+      "Left choroid plexus",
+      "Right choroid plexus",
+      "Hypothalamus",
+      "Left substantia nigra",
+      "Right substantia nigra",
+      "Left red nucleus",
+      "Right red nucleus",
+      "Left subthalamic nucleus",
+      "Right subthalamic nucleus",
+      "Left deep cerebellar nuclei",
+      "Right deep cerebellar nuclei",
+      "Left inferior olive",
+      "Right inferior olive",
+      "Left nucleus accumbens",
+      "Right nucleus accumbens",
+      "Left claustrum",
+      "Right claustrum",
+      "Left abducens nerve (VI)",
+      "Right abducens nerve (VI)",
+      "Left facial nerve (VII)",
+      "Right facial nerve (VII)",
+      "Left glossopharyngeal nerve (IX)",
+      "Right glossopharyngeal nerve (IX)",
+      "Left hypoglossal nerve (XII)",
+      "Right hypoglossal nerve (XII)",
+      "Left oculomotor nerve (III)",
+      "Right oculomotor nerve (III)",
+      "Left olfactory nerve (I)",
+      "Right olfactory nerve (I)",
+      "Left optic nerve (II)",
+      "Right optic nerve (II)",
+      "Left trigeminal nerve (V)",
+      "Left maxillary nerve",
+      "Left meningeal branch of maxillary nerve",
+      "Left ophthalmic nerve",
+      "Right trigeminal nerve (V)",
+      "Left anterior division of mandibular nerve",
+      "Left buccal nerve",
+      "Right anterior division of mandibular nerve",
+      "Right buccal nerve",
+      "Left posterior division of mandibular nerve",
+      "Left inferior alveolar nerve",
+      "Left mental nerve",
+      "Left nerve to mylohyoid muscle",
+      "Left lingual nerve",
+      "Right posterior division of mandibular nerve",
+      "Right inferior alveolar nerve",
+      "Right mental nerve",
+      "Right nerve to mylohyoid muscle",
+      "Right lingual nerve",
+      "Right maxillary nerve",
+      "Right meningeal branch of maxillary nerve",
+      "Right ophthalmic nerve",
+      "Left trochlear nerve (IV)",
+      "Right trochlear nerve (IV)",
+      "Left vagus nerve (X)",
+      "Right vagus nerve (X)",
+      "Cauda equina",
+      "Left accessory nerve (XI)",
+      "Right accessory nerve (XI)"
+    ],
+    "default_triangles": 339781,
+    "default_vertices": 167571
+  },
+  "weighted_scores": {
+    "bp3d": 68.5,
+    "spike": 52.8
+  }
+}
