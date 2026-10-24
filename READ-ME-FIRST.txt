@@ -1,0 +1,18 @@
+NEURAXIA — ONE-FILE EDITION
+============================
+
+Upload ONLY the file  index.html  to the ROOT of your GitHub repo
+(overwriting the index.html already there). Everything — the 3D
+engine, styling, logo and both anatomy models — is inside that one
+file. No folders needed.
+
+Steps:
+1. Open your repo → "Add file" → "Upload files" → choose index.html
+   → Commit changes.
+2. Settings → Pages → "Deploy from a branch" → main → / (root). (Done already? skip.)
+3. Wait 1-2 minutes. Open your site link in a NEW tab
+   (close the old tab first — Safari loves caching the broken page).
+
+You should see the black NEURAXIA loading screen, then the living brain.
+The other loose files in the repo can stay; only index.html matters now.
+Comparison "Sprint 1 spike" model is not embedded in this edition.
