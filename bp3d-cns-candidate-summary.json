@@ -1,0 +1,273 @@
+{
+  "by_category": {
+    "axis": {
+      "bytes": 8484818,
+      "faces": 118310,
+      "meshes": 12
+    },
+    "context": {
+      "bytes": 137924,
+      "faces": 2302,
+      "meshes": 2
+    },
+    "cortex": {
+      "bytes": 39130478,
+      "faces": 570886,
+      "meshes": 56
+    },
+    "cranial": {
+      "bytes": 9850448,
+      "faces": 151928,
+      "meshes": 51
+    },
+    "deep": {
+      "bytes": 9386745,
+      "faces": 146964,
+      "meshes": 63
+    },
+    "meninges": {
+      "bytes": 10444150,
+      "faces": 147818,
+      "meshes": 5
+    },
+    "ventricles": {
+      "bytes": 4177901,
+      "faces": 63818,
+      "meshes": 10
+    },
+    "white": {
+      "bytes": 9042593,
+      "faces": 131146,
+      "meshes": 20
+    }
+  },
+  "by_tier": {
+    "context": {
+      "bytes": 137924,
+      "faces": 2302,
+      "meshes": 2
+    },
+    "core": {
+      "bytes": 70376792,
+      "faces": 1033708,
+      "meshes": 163
+    },
+    "cranial_division_pool": {
+      "bytes": 462077,
+      "faces": 7790,
+      "meshes": 7
+    },
+    "cranial_proximal": {
+      "bytes": 4141830,
+      "faces": 64992,
+      "meshes": 36
+    },
+    "cranial_proximal_pool": {
+      "bytes": 5092284,
+      "faces": 76562,
+      "meshes": 6
+    },
+    "meninges": {
+      "bytes": 10444150,
+      "faces": 147818,
+      "meshes": 5
+    }
+  },
+  "candidate_faces_catalogue": 1333172,
+  "candidate_meshes": 219,
+  "candidate_obj_bytes_catalogue": 90655057,
+  "duplicate_name_groups": {
+    "cerebellum": [
+      "FJ1781",
+      "FJ1830"
+    ],
+    "choroid-plexus-of-cerebral-hemisphere": [
+      "FJ1755",
+      "FJ1803"
+    ],
+    "hypothalamus": [
+      "FJ1760",
+      "FJ1808"
+    ],
+    "lamina-terminalis": [
+      "FJ1764",
+      "FJ1812"
+    ],
+    "left-anterior-nucleus-of-hypothalamus": [
+      "FJ7483",
+      "FJ7484"
+    ],
+    "left-cerebral-crus": [
+      "FJ1770",
+      "FJ7504"
+    ],
+    "left-glossopharyngeal-nerve": [
+      "FJ3901",
+      "FJ3939"
+    ],
+    "left-inferior-temporal-gyrus": [
+      "FJ1746",
+      "FJ7473"
+    ],
+    "left-lingual-gyrus": [
+      "FJ7475",
+      "FJ7500"
+    ],
+    "left-olfactory-nerve": [
+      "FJ3915",
+      "FJ3916",
+      "FJ3917",
+      "FJ3918",
+      "FJ3919",
+      "FJ3920"
+    ],
+    "left-superior-parietal-lobule": [
+      "FJ1835",
+      "FJ7463"
+    ],
+    "mammillary-body": [
+      "FJ7485",
+      "FJ7485M"
+    ],
+    "medulla-oblongata": [
+      "FJ1769",
+      "FJ1831"
+    ],
+    "optic-chiasm": [
+      "FJ7503",
+      "FJ7503M",
+      "FJ7505",
+      "FJ7505M"
+    ],
+    "periventricular-nucleus": [
+      "FJ7499",
+      "FJ7499M"
+    ],
+    "pituitary-gland": [
+      "FJ1796",
+      "FJ3848"
+    ],
+    "pons": [
+      "FJ1775",
+      "FJ1822"
+    ],
+    "right-anterior-nucleus-of-hypothalamus": [
+      "FJ7483M",
+      "FJ7484M"
+    ],
+    "right-cerebral-crus": [
+      "FJ1817",
+      "FJ7504M"
+    ],
+    "right-half-of-tentorium-cerebelli": [
+      "FJ3889",
+      "FJ7446"
+    ],
+    "right-inferior-temporal-gyrus": [
+      "FJ1747",
+      "FJ7473M"
+    ],
+    "right-lingual-gyrus": [
+      "FJ7475M",
+      "FJ7500M"
+    ],
+    "right-olfactory-nerve": [
+      "FJ4013",
+      "FJ4014",
+      "FJ4015",
+      "FJ4016",
+      "FJ4017",
+      "FJ4018"
+    ],
+    "right-ophthalmic-nerve": [
+      "FJ1363",
+      "FJ4019"
+    ],
+    "right-superior-parietal-lobule": [
+      "FJ1836",
+      "FJ7463M"
+    ],
+    "right-trochlear-nerve": [
+      "FJ1381",
+      "FJ4039"
+    ],
+    "trunk-of-right-oculomotor-nerve": [
+      "FJ4033",
+      "FJ4034"
+    ],
+    "tuber-cinereum": [
+      "FJ1780",
+      "FJ1828"
+    ]
+  },
+  "manual_fj": {
+    "FJ3914": {
+      "basis": "Manual Sprint 1B inclusion: left olfactory tract (CNS white-matter tract)",
+      "tier": "core"
+    },
+    "FJ4012": {
+      "basis": "Manual Sprint 1B inclusion: right olfactory tract (CNS white-matter tract)",
+      "tier": "core"
+    },
+    "FJ4425": {
+      "basis": "Manual Sprint 1B inclusion: cauda equina is required neuraxis context and is not in the spinal-cord root expansion",
+      "tier": "core"
+    }
+  },
+  "manual_scope_exclusions": {
+    "FJ1763": "Interpeduncular fossa (FMA83740) is classified under subarachnoid incisure: a midbrain surface depression/CSF fossa, not a solid CNS tissue concept. Sprint 1B Layer 0 includes ventricular CSF volumes but not subarachnoid surface fossae/cisterns; revisit only if a dedicated CSF-surface layer is approved.",
+    "FJ1811": "Alternate/component FJ for the same interpeduncular-fossa surface exclusion as FJ1763; not a solid CNS tissue concept in Sprint 1B Layer 0."
+  },
+  "neural_tree_not_selected": 181,
+  "roots": {
+    "FMA13889": {
+      "basis": "FMA2Obj 4.3 concept expansion for pituitary gland (neuroanatomical landmark)",
+      "tier": "context"
+    },
+    "FMA223151": {
+      "basis": "FMA2Obj 4.3 is_a component expansion for internal gray matter component",
+      "tier": "core"
+    },
+    "FMA242675": {
+      "basis": "FMA2Obj 4.3 part_of component expansion for ventricular system of neuraxis",
+      "tier": "core"
+    },
+    "FMA242770": {
+      "basis": "FMA2Obj 4.3 is_a component expansion for wall of ventricular system (choroid plexus)",
+      "tier": "core"
+    },
+    "FMA266054": {
+      "basis": "FMA2Obj 4.3 is_a component expansion for subdivision of cranial dura mater",
+      "tier": "meninges"
+    },
+    "FMA50801": {
+      "basis": "FMA2Obj 4.3 part_of component expansion for Brain",
+      "tier": "core"
+    },
+    "FMA62007": {
+      "basis": "FMA2Obj 4.3 concept expansion for thalamus",
+      "tier": "core"
+    },
+    "FMA62008": {
+      "basis": "FMA2Obj 4.3 concept expansion for Hypothalamus",
+      "tier": "core"
+    },
+    "FMA62033": {
+      "basis": "FMA2Obj 4.3 concept expansion for pineal body",
+      "tier": "core"
+    },
+    "FMA75351": {
+      "basis": "FMA2Obj 4.3 concept expansion for interventricular foramen",
+      "tier": "core"
+    },
+    "FMA7647": {
+      "basis": "FMA2Obj 4.3 part_of component expansion for spinal cord",
+      "tier": "core"
+    },
+    "FMA83143": {
+      "basis": "FMA2Obj 4.3 is_a component expansion for cell part cluster of neuraxis",
+      "tier": "core"
+    }
+  },
+  "unique_source_names": 181
+}

@@ -1,0 +1,155 @@
+{
+  "by_category": {
+    "axis": {
+      "components": 12,
+      "concepts": 7,
+      "source_triangles": 118310
+    },
+    "context": {
+      "components": 1,
+      "concepts": 1,
+      "source_triangles": 1164
+    },
+    "cortex": {
+      "components": 50,
+      "concepts": 50,
+      "source_triangles": 547650
+    },
+    "cranial": {
+      "components": 46,
+      "concepts": 35,
+      "source_triangles": 143590
+    },
+    "deep": {
+      "components": 61,
+      "concepts": 57,
+      "source_triangles": 142036
+    },
+    "meninges": {
+      "components": 3,
+      "concepts": 3,
+      "source_triangles": 101474
+    },
+    "ventricles": {
+      "components": 9,
+      "concepts": 9,
+      "source_triangles": 58876
+    },
+    "white": {
+      "components": 20,
+      "concepts": 20,
+      "source_triangles": 131146
+    }
+  },
+  "by_tier": {
+    "context": {
+      "components": 1,
+      "concepts": 1,
+      "source_triangles": 1164
+    },
+    "core": {
+      "components": 154,
+      "concepts": 145,
+      "source_triangles": 1000602
+    },
+    "cranial_optional": {
+      "components": 12,
+      "concepts": 12,
+      "source_triangles": 82576
+    },
+    "cranial_proximal": {
+      "components": 32,
+      "concepts": 21,
+      "source_triangles": 58430
+    },
+    "meninges": {
+      "components": 3,
+      "concepts": 3,
+      "source_triangles": 101474
+    }
+  },
+  "candidate_meshes": 219,
+  "default_visible_concepts": 171,
+  "excluded_component_meshes": 17,
+  "excluded_fj": {
+    "FJ1363": "Alternate/segmental right ophthalmic nerve component whose bounds do not match left FJ3921; FJ4019 selected as the mirror-matching component.",
+    "FJ1381": "Alternate right trochlear nerve generation whose bounds/volume do not match the left FJ3981; FJ4039 selected as the mirror-matching component.",
+    "FJ1746": "Alternate lower-resolution generation of left inferior temporal gyrus; FJ7473 selected from the coherent high-resolution FJ747x cortical family.",
+    "FJ1747": "Alternate lower-resolution generation of right inferior temporal gyrus; FJ7473M selected from the coherent high-resolution FJ747x cortical family.",
+    "FJ1803": "Unsided choroid-plexus component geometrically duplicate of FJ3855 (right lateral ventricle); FJ1755 + FJ3855 selected as explicit left/right concepts.",
+    "FJ1835": "Broader alternate generation of left superior parietal lobule (32.81 cm3 versus 17.18 cm3 for FJ7463); excluded provisionally to avoid double-volume overlap, pending visual/faculty review.",
+    "FJ1836": "Broader alternate generation of right superior parietal lobule (32.78 cm3 versus 17.14 cm3 for FJ7463M); excluded provisionally to avoid double-volume overlap, pending visual/faculty review.",
+    "FJ1843": "Source name says Tentorium cerebelli, but bounds/geometry are the same right-sided component as FJ3889; FJ3889 selected because its concept/name explicitly says right half.",
+    "FJ3848": "Exact alternate duplicate of pituitary gland FJ1796 (same centre, dimensions and volume).",
+    "FJ4034": "Named trunk of right oculomotor nerve but bounds do not match the left trunk or FJ4033; treated as a non-matching distal/segmental alternate and excluded from the proximal core.",
+    "FJ7446": "Alternate generation of right half of tentorium cerebelli overlapping FJ3889, with 822 indexed components and 9 degenerate triangles; FJ3889 selected.",
+    "FJ7484": "Alternate tessellation of left anterior nucleus of Hypothalamus with identical bounds/volume to FJ7483; FJ7483 selected because it is a single indexed component before welding.",
+    "FJ7484M": "Alternate tessellation of right anterior nucleus of Hypothalamus with identical bounds/volume to FJ7483M; FJ7483M selected because it is a single indexed component before welding.",
+    "FJ7500": "Alternate lower-resolution generation of left lingual gyrus occupying the FJ7475 bounds.",
+    "FJ7500M": "Alternate lower-resolution generation of right lingual gyrus occupying the FJ7475M bounds.",
+    "FJ7503": "Alternate right-half generation of optic chiasm; FJ7505/FJ7505M pair selected because each is a single indexed component.",
+    "FJ7503M": "Alternate left-half generation of optic chiasm; FJ7505/FJ7505M pair selected because each is a single indexed component."
+  },
+  "final_concepts": 182,
+  "included_component_meshes": 202,
+  "included_source_triangles": 1244246,
+  "included_source_vertices": 690390,
+  "merge_groups": {
+    "Hypothalamus": [
+      "FJ1760",
+      "FJ1808"
+    ],
+    "cerebellum": [
+      "FJ1781",
+      "FJ1830"
+    ],
+    "lamina-terminalis": [
+      "FJ1764",
+      "FJ1812"
+    ],
+    "left-cerebral-crus": [
+      "FJ1770",
+      "FJ7504"
+    ],
+    "left-olfactory-nerve": [
+      "FJ3915",
+      "FJ3916",
+      "FJ3917",
+      "FJ3918",
+      "FJ3919",
+      "FJ3920"
+    ],
+    "mammillary-bodies": [
+      "FJ7485",
+      "FJ7485M"
+    ],
+    "medulla-oblongata": [
+      "FJ1769",
+      "FJ1831"
+    ],
+    "optic-chiasm": [
+      "FJ7505",
+      "FJ7505M"
+    ],
+    "pons": [
+      "FJ1775",
+      "FJ1822"
+    ],
+    "right-cerebral-crus": [
+      "FJ1817",
+      "FJ7504M"
+    ],
+    "right-olfactory-nerve": [
+      "FJ4013",
+      "FJ4014",
+      "FJ4015",
+      "FJ4016",
+      "FJ4017",
+      "FJ4018"
+    ],
+    "tuber-cinereum": [
+      "FJ1780",
+      "FJ1828"
+    ]
+  }
+}

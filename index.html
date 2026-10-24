@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#070708" />
+    <title>NEURAXIA — Neurons at your fingertips</title>
+    <link rel="icon" href="/brand/neuraxia-mark.png" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="scene" aria-label="Interactive 3D central nervous system technical spike"></canvas>
+
+      <div class="vignette" aria-hidden="true"></div>
+      <div class="topographic-glow" aria-hidden="true"></div>
+
+      <header class="brandbar glass">
+        <img class="brand-mark" src="/brand/neuraxia-mark.png" alt="Neuraxia cortical island mark" />
+        <div>
+          <div id="datasetEyebrow" class="eyebrow">SPRINT 1B · BODYPARTS3D CANDIDATE</div>
+          <h1>NEURAXIA</h1>
+          <p>Neurons at your fingertips.</p>
+        </div>
+        <div class="build-chip">REAL CNS DATA<br /><span id="meshCount">loading…</span></div>
+      </header>
+
+      <aside class="control-panel glass" aria-label="Neuraxia controls">
+        <div class="panel-section">
+          <div class="micro-label">Anatomy dataset</div>
+          <div class="action-grid dataset-grid" aria-label="Switch anatomy dataset">
+            <button type="button" data-dataset="bp3d">BodyParts3D 1B</button>
+            <button type="button" data-dataset="spike">Sprint 1 spike</button>
+          </div>
+          <p id="datasetNote" class="living-note">Loading the curated Sprint 1B candidate…</p>
+        </div>
+
+        <div class="panel-section">
+          <label class="micro-label" for="search">Find a structure <span>/</span></label>
+          <input id="search" type="search" placeholder="Try thalamus, fornix, optic…" autocomplete="off" />
+          <div id="searchResults" class="search-results" role="listbox" aria-label="Search results"></div>
+        </div>
+
+        <div class="panel-section living-panel">
+          <div class="micro-label">Living Neuraxia</div>
+          <button id="awakenNeuraxia" class="primary-action" type="button">✦ Awaken Neuraxia</button>
+          <div class="action-grid" aria-label="Animated neuroanatomy pathways">
+            <button type="button" data-ignite="visual">Ignite vision</button>
+            <button type="button" data-ignite="motor">Ignite movement</button>
+            <button type="button" data-ignite="sensory">Race sensation</button>
+            <button id="enterVentricles" class="journey-button" type="button">Enter ventricles →</button>
+          </div>
+          <label class="toggle-line">
+            <input id="livingMode" type="checkbox" checked />
+            <span>Ambient neural activity</span>
+          </label>
+          <p class="living-note">Signals are schematic teaching animations anchored to named structures — production tract geometry is a later gate.</p>
+        </div>
+
+        <div class="panel-section fire-panel">
+          <div class="micro-label">FIRE · pathway graph <span class="fire-tag">FIRE-0</span></div>
+          <div class="action-grid fire-grid" aria-label="FIRE pathway graph ignitions">
+            <button type="button" data-ignite="cst">CST · movement</button>
+            <button type="button" data-ignite="dcml">DCML · fine touch</button>
+            <button type="button" data-ignite="stt">Spinothalamic · pain</button>
+            <button type="button" data-ignite="race" class="journey-button">Race the decussations ⇄</button>
+            <button type="button" data-ignite="vision">Vision · chiasm sort</button>
+            <button type="button" data-ignite="pupillary">Pupillary reflex</button>
+            <button type="button" data-ignite="reflex">Stretch reflex</button>
+          </div>
+          <div id="pathwayInfo" class="pathway-info" aria-live="polite">
+            <p class="pathway-info-empty">Ignite a tract to see its neuron chain. <span class="marker-key syn">○</span> synapse · <span class="marker-key dec">◆</span> decussation · <span class="marker-key sta">●</span> station.</p>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <div class="micro-label">Layer presets</div>
+          <div class="preset-grid" aria-label="Layer presets">
+            <button type="button" data-preset="overview" aria-pressed="true">Overview</button>
+            <button type="button" data-preset="deep" aria-pressed="false">Deep nuclei</button>
+            <button type="button" data-preset="ventricles" aria-pressed="false">Ventricles</button>
+            <button type="button" data-preset="white" aria-pressed="false">White matter</button>
+            <button type="button" data-preset="cranial" aria-pressed="false">Cranial nerves</button>
+            <button type="button" data-preset="cord" aria-pressed="false">Neuraxis</button>
+          </div>
+          <label class="toggle-line">
+            <input id="ghostMode" type="checkbox" />
+            <span>Ghost cortex &amp; white matter (x-ray)</span>
+          </label>
+        </div>
+
+        <div class="panel-section">
+          <div class="micro-label">Territories</div>
+          <div id="categoryToggles" class="category-grid"></div>
+        </div>
+
+        <div class="panel-section optional-panel">
+          <div class="micro-label">Optional layer <span id="optionalCount" class="optional-count"></span></div>
+          <p class="living-note">Mapped but hidden by default — broad or ambiguous source geometry. Select to reveal.</p>
+          <div id="optionalList" class="optional-list"></div>
+        </div>
+
+        <div class="panel-section">
+          <div class="slider-row">
+            <label class="micro-label" for="explode">Disassemble</label>
+            <output id="explodeValue">0%</output>
+          </div>
+          <input id="explode" type="range" min="0" max="100" value="0" />
+          <div class="slider-caption">Separate the territories of the neuraxis.</div>
+        </div>
+
+        <div class="panel-section camera-row" aria-label="Camera views">
+          <button data-view="front">Front</button>
+          <button data-view="side">Side</button>
+          <button data-view="top">Top</button>
+          <button id="resetView">Reset</button>
+        </div>
+
+        <label class="isolate-toggle">
+          <input id="isolate" type="checkbox" />
+          <span>Isolate selected structure</span>
+        </label>
+
+        <div class="metrics" aria-label="Technical metrics">
+          <div><strong id="fps">—</strong><span>FPS</span></div>
+          <div><strong id="visibleCount">—</strong><span>visible meshes</span></div>
+          <div><strong id="modelSizeValue">—</strong><span id="modelSizeLabel">GLB</span></div>
+          <div><strong id="drawCalls">—</strong><span>draw calls</span></div>
+          <div><strong id="triCount">—</strong><span>rendered tris</span></div>
+          <div><strong id="loadTime">—</strong><span>model load</span></div>
+        </div>
+      </aside>
+
+      <section id="selectedCard" class="selected-card glass" aria-live="polite">
+        <div class="eyebrow">SELECTED TERRITORY</div>
+        <h2 id="selectedName">Enter the neuraxis</h2>
+        <p id="selectedMeta">Drag to orbit. Scroll to zoom. Click any glowing structure — or search by name.</p>
+        <div id="dossierBody" class="dossier-body"></div>
+        <div id="selectedStats" class="selected-stats"></div>
+      </section>
+
+      <section id="liveCaption" class="live-caption glass" aria-live="polite">
+        <div id="captionKicker" class="eyebrow">NEURAXIA IS ALIVE</div>
+        <p id="captionText">Signals are moving through the territory. Choose an ignition — or dive into the ventricles.</p>
+      </section>
+
+      <footer id="sourceAttribution" class="attribution">
+        BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International. Sprint 1B internal candidate; licence-version confirmation and expert anatomy review remain release gates.
+      </footer>
+
+      <div id="loader" class="loader" role="status" aria-label="Loading Neuraxia">
+        <img src="/brand/neuraxia-mark.png" alt="" />
+        <div class="loader-title">NEURAXIA</div>
+        <div class="loader-sub">Neurons at your fingertips.</div>
+        <div class="loader-bar"><span id="loaderFill"></span></div>
+        <div id="loaderText" class="loader-text">Entering the territory…</div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
