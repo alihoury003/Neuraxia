@@ -2,6 +2,8 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
+import { buildFireGraphPathways, FIRE_SOURCE_NOTE } from './pathways.js';
+import { getDossier, DOSSIER_REVIEW_STATE } from './dossiers.js';
 
 const canvas = document.querySelector('#scene');
 const loaderEl = document.querySelector('#loader');
@@ -35,6 +37,69 @@ const pathwayInfoEl = document.querySelector('#pathwayInfo');
 const drawCallsEl = document.querySelector('#drawCalls');
 const triCountEl = document.querySelector('#triCount');
 const loadTimeEl = document.querySelector('#loadTime');
+const controlPanelEl = document.querySelector('#controlPanel');
+const selectedCardEl = document.querySelector('#selectedCard');
+const firePanelEl = document.querySelector('.fire-panel');
+const mobileHintEl = document.querySelector('#mobileHint');
+const selectedActionsEl = document.querySelector('#selectedActions');
+const relatedPathwaysEl = document.querySelector('#relatedPathways');
+const neighbourPanelEl = document.querySelector('#neighbourPanel');
+const labelsEnabledInput = document.querySelector('#labelsEnabled');
+const labelsLayerEl = document.querySelector('#labelsLayer');
+const labelLeadersEl = document.querySelector('#labelLeaders');
+const igniteConsoleEl = document.querySelector('#igniteConsole');
+const igniteTitleEl = document.querySelector('#igniteTitle');
+const igniteScrubEl = document.querySelector('#igniteScrub');
+const ignitePlayEl = document.querySelector('#ignitePlay');
+const igniteRestartEl = document.querySelector('#igniteRestart');
+const ignitePrevEl = document.querySelector('#ignitePrev');
+const igniteNextEl = document.querySelector('#igniteNext');
+const igniteSpeedEl = document.querySelector('#igniteSpeed');
+const igniteStepEl = document.querySelector('#igniteStep');
+const igniteFollowEl = document.querySelector('#igniteFollow');
+const igniteOrdersEl = document.querySelector('#igniteOrders');
+const igniteLesionEl = document.querySelector('#igniteLesion');
+const igniteLoopEl = document.querySelector('#igniteLoop');
+const igniteCloseEl = document.querySelector('#igniteClose');
+const igniteStationsEl = document.querySelector('#igniteStations');
+const igniteLegendEl = document.querySelector('#igniteLegend');
+const igniteLesionNoteEl = document.querySelector('#igniteLesionNote');
+const sliceEnabledInput = document.querySelector('#sliceEnabled');
+const slicePositionInput = document.querySelector('#slicePosition');
+const sliceValueEl = document.querySelector('#sliceValue');
+const sliceNoteEl = document.querySelector('#sliceNote');
+const restoreStructuresBtn = document.querySelector('#restoreStructures');
+const structureModeCountEl = document.querySelector('#structureModeCount');
+const tourCardEl = document.querySelector('#tourCard');
+const tourProgressEl = document.querySelector('#tourProgress');
+const tourTitleEl = document.querySelector('#tourTitle');
+const tourTextEl = document.querySelector('#tourText');
+const tourDotsEl = document.querySelector('#tourDots');
+const tourBackBtn = document.querySelector('#tourBack');
+const tourNextBtn = document.querySelector('#tourNext');
+const tourExitBtn = document.querySelector('#tourExit');
+const compactLayoutQuery = matchMedia('(max-width: 1100px)');
+
+function isCompactLayout() {
+  return compactLayoutQuery.matches;
+}
+
+function setMobilePanel(panel = 'explore') {
+  const next = ['explore', 'details', 'controls', 'fire'].includes(panel) ? panel : 'explore';
+  document.body.dataset.mobilePanel = next;
+  document.querySelectorAll('[data-mobile-panel-button]').forEach(button =>
+    button.setAttribute('aria-pressed', String(button.dataset.mobilePanelButton === next)));
+  if (!controlPanelEl) return;
+  if (next === 'fire' && firePanelEl) {
+    requestAnimationFrame(() => {
+      controlPanelEl.scrollTop = Math.max(0, firePanelEl.offsetTop - 14);
+    });
+  } else if (next === 'controls') {
+    requestAnimationFrame(() => { controlPanelEl.scrollTop = 0; });
+  } else if (next === 'details' && selectedCardEl) {
+    requestAnimationFrame(() => { selectedCardEl.scrollTop = 0; });
+  }
+}
 const prefersReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const LOAD_STARTED_AT = performance.now();
 
@@ -43,7 +108,7 @@ const DATASET_ID = urlParams.get('dataset') === 'spike' ? 'spike' : 'bp3d';
 const IS_BP3D = DATASET_ID === 'bp3d';
 const MODEL_PROFILE = ['desktop', 'mobile'].includes(urlParams.get('profile'))
   ? urlParams.get('profile')
-  : (matchMedia('(max-width: 760px)').matches ? 'mobile' : 'desktop');
+  : (matchMedia('(max-width: 900px), (pointer: coarse) and (max-width: 1100px)').matches ? 'mobile' : 'desktop');
 const BASE_URL = import.meta.env.BASE_URL || '/';
 const MODEL_URL = IS_BP3D
   ? `${BASE_URL}models/neuraxia-bp3d-cns-${MODEL_PROFILE}.meshopt.glb`
@@ -55,8 +120,8 @@ const QUALITY_MODE = ['auto', 'high'].includes(urlParams.get('quality')) ? urlPa
 let slowWindows = 0;
 
 datasetEyebrow.textContent = IS_BP3D
-  ? 'SPRINT 1B · BODYPARTS3D CANDIDATE'
-  : 'SPRINT 1 · TECHNICAL SPIKE';
+  ? 'DISSECT ALPHA · FIRE PATHWAY GRAPH'
+  : 'SPRINT 1 SPIKE · COMPARISON ONLY';
 datasetNote.textContent = IS_BP3D
   ? `182 curated BodyParts3D concepts · ${MODEL_PROFILE} Meshopt profile. Internal candidate pending licence confirmation and expert anatomy sign-off.`
   : 'Original 309-mesh Z-derived feasibility model, retained only for side-by-side comparison.';
@@ -112,9 +177,11 @@ scene.fog = new THREE.FogExp2(0x070708, 0.028);
 const camera = new THREE.PerspectiveCamera(42, innerWidth / innerHeight, 0.01, 1000);
 camera.position.set(4, 3, 7);
 
+let renderPixelRatio = Math.min(devicePixelRatio || 1, 2);
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setPixelRatio(renderPixelRatio);
 renderer.setSize(innerWidth, innerHeight);
+renderer.localClippingEnabled = true;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.08;
@@ -126,6 +193,11 @@ controls.autoRotate = !prefersReducedMotion;
 controls.autoRotateSpeed = 0.42;
 controls.minDistance = 0.2;
 controls.maxDistance = 40;
+controls.rotateSpeed = 0.72;
+controls.panSpeed = 0.65;
+controls.zoomSpeed = 0.85;
+controls.screenSpacePanning = false;
+controls.touches = { ONE: THREE.TOUCH.ROTATE, TWO: THREE.TOUCH.DOLLY_PAN };
 
 scene.add(new THREE.HemisphereLight(0xf4efe8, 0x1b1210, 2.2));
 const key = new THREE.DirectionalLight(0xffffff, 3.2);
@@ -163,6 +235,7 @@ let entries = [];
 let selected = null;
 let modelCenter = new THREE.Vector3();
 let modelRadius = 3;
+let modelSize = new THREE.Vector3(1, 1, 1);
 let selectionBox;
 let cameraAnimation = null;
 let explodeTarget = 0;
@@ -178,6 +251,36 @@ const sharedStationGeometry = new THREE.SphereGeometry(1, 12, 8);
 const sharedDecussationGeometry = new THREE.OctahedronGeometry(1);
 let cordFrame = null; // FIRE-0: BP3D cord centreline + radius (see computeCordFrame)
 let fireGraph = null; // FIRE-0 graph definitions, built once entries exist
+
+/* ── Sprint 2A · DISSECT proper state ─────────────────────────────── */
+const hiddenEntries = new Set();
+const ghostedEntries = new Set();
+let ghostOthers = false;
+const slicePlane = new THREE.Plane(new THREE.Vector3(-1, 0, 0), 0);
+const activeSlicePlanes = [slicePlane];
+let sliceHelper = null;
+let sliceAxis = 'sagittal';
+let sliceFlipped = false;
+const ignite = {
+  playing: true, speed: 1, follow: false, orders: false,
+  step: false, lesionMode: false, loop: false, scrubbing: false
+};
+let lastPathwayTick = 0;
+let ignitionSeq = 0;
+let awakenSeq = 0;
+const ORDER_COLORS = [0x20d7e5, 0xffb199, 0xc9a7ff, 0x9fe870];
+let neighbourMode = false;
+let neighbourEntries = [];
+let neighbourDetails = [];
+const neighbourSet = new Set();
+let landmarkLabels = [];
+const labelPool = [];
+let labelFrame = 0;
+let labelsWereActive = false;
+let activeTour = null;
+let activeTourKey = null;
+let tourStepIndex = 0;
+let tourIgniteTimer = null;
 
 const raycaster = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
@@ -255,17 +358,580 @@ function applyGhostMode() {
   for (const e of entries) {
     const m = e.mesh.material;
     const ghostable = e.category === 'cortex' || e.category === 'white' || e.category === 'context';
-    if (ghost && ghostable) {
-      m.transparent = true;
-      m.opacity = 0.13;
-      m.depthWrite = false;
-    } else {
-      m.opacity = e.baseOpacity;
-      m.transparent = e.baseOpacity < 1;
-      m.depthWrite = e.baseOpacity >= 0.9;
-    }
+    let opacity = e.baseOpacity;
+    if (ghost && ghostable) opacity = Math.min(opacity, 0.13);
+    if (ghostedEntries.has(e)) opacity = Math.min(opacity, 0.16);
+    if (ghostOthers && selected && e !== selected) opacity = Math.min(opacity, 0.13);
+    if (ghostOthers && selected && e === selected && !ghostedEntries.has(e)) opacity = e.baseOpacity;
+    m.opacity = opacity;
+    m.transparent = opacity < 1;
+    m.depthWrite = opacity >= 0.9;
     m.needsUpdate = true;
   }
+  updateStructureModeUI();
+}
+
+function updateStructureModeUI() {
+  const count = hiddenEntries.size + ghostedEntries.size;
+  if (structureModeCountEl) structureModeCountEl.textContent = String(count);
+  if (restoreStructuresBtn) {
+    restoreStructuresBtn.disabled = count === 0 && !ghostOthers && !isolateInput.checked;
+  }
+}
+
+function restoreStructureModes(announce = true) {
+  hiddenEntries.clear();
+  ghostedEntries.clear();
+  ghostOthers = false;
+  neighbourMode = false;
+  updateNeighbours();
+  clearIgnitions();
+  isolateInput.checked = false;
+  applyGhostMode();
+  updateVisibility();
+  renderSelectedActions();
+  if (announce) setCaption('RESTORED', 'Every territory is back on the table — nothing hidden, ghosted or soloed.');
+}
+
+
+/* ── Sprint 2A · selected-structure actions ───────────────────────── */
+
+const FIRE_ACTION_LABELS = {
+  cst: 'CST · movement', dcml: 'DCML · fine touch', stt: 'Spinothalamic · pain',
+  vision: 'Vision · chiasm sort', pupillary: 'Pupillary reflex', reflex: 'Stretch reflex',
+  visual: 'Vision (schematic)', motor: 'Movement (schematic)', dorsal: 'Fine touch (schematic)',
+  pain: 'Pain (schematic)'
+};
+
+function relatedFireKeys(entry) {
+  if (!entry) return [];
+  const keys = [];
+  if (IS_BP3D && fireGraph) {
+    for (const [key, def] of Object.entries(fireGraph)) {
+      const inEntries = (def.entries || []).includes(entry);
+      const inStations = (def.stations || []).some(st => st.entry === entry);
+      if (inEntries || inStations) keys.push(key);
+    }
+    return keys;
+  }
+  if (entries.length) {
+    for (const [key, def] of Object.entries(pathwayDefinitions())) {
+      if ((def.sequence || []).includes(entry)) keys.push(key);
+    }
+  }
+  return keys;
+}
+
+function makeActionButton(label, onClick, { pressed = null, className = '' } = {}) {
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.textContent = label;
+  if (className) b.className = className;
+  if (pressed !== null) b.setAttribute('aria-pressed', String(pressed));
+  b.addEventListener('click', onClick);
+  return b;
+}
+
+function renderSelectedActions() {
+  if (!selectedActionsEl || !relatedPathwaysEl) return;
+  selectedActionsEl.innerHTML = '';
+  relatedPathwaysEl.innerHTML = '';
+  updateStructureModeUI();
+  if (!selected) {
+    selectedActionsEl.innerHTML = '<p class="action-hint">Select a structure to focus, solo, ghost, hide or ignite it.</p>';
+    return;
+  }
+
+  const isHidden = hiddenEntries.has(selected);
+  const isGhosted = ghostedEntries.has(selected);
+  selectedActionsEl.append(
+    makeActionButton('◎ Focus', () => {
+      hiddenEntries.delete(selected);
+      updateVisibility();
+      focusEntry(selected);
+      renderSelectedActions();
+    }),
+    makeActionButton('Solo', () => {
+      hiddenEntries.delete(selected);
+      isolateInput.checked = !isolateInput.checked;
+      updateVisibility();
+      renderSelectedActions();
+    }, { pressed: isolateInput.checked }),
+    makeActionButton('Ghost others', () => {
+      ghostOthers = !ghostOthers;
+      applyGhostMode();
+      renderSelectedActions();
+    }, { pressed: ghostOthers }),
+    makeActionButton('Neighbours', () => {
+      neighbourMode = !neighbourMode;
+      updateNeighbours();
+      renderSelectedActions();
+      renderNeighbourPanel();
+    }, { pressed: neighbourMode }),
+    makeActionButton(isGhosted ? 'Make solid' : 'Ghost this', () => {
+      isGhosted ? ghostedEntries.delete(selected) : ghostedEntries.add(selected);
+      applyGhostMode();
+      renderSelectedActions();
+    }, { pressed: isGhosted }),
+    makeActionButton(isHidden ? 'Show' : 'Hide', () => {
+      isHidden ? hiddenEntries.delete(selected) : hiddenEntries.add(selected);
+      updateVisibility();
+      renderSelectedActions();
+    }, { pressed: isHidden }),
+    makeActionButton('✦ Pulse here', () => {
+      hiddenEntries.delete(selected);
+      updateVisibility();
+      triggerBurst(selected, { duration: 2400, strength: 1.55, color: 0x20d7e5 });
+      setCaption('LOCAL IGNITION', `${selected.name} flares. Route-level FIRE graphs that pass through it are listed below where they exist.`);
+      renderSelectedActions();
+    }, { className: 'pulse-action' })
+  );
+
+  const keys = relatedFireKeys(selected);
+  const title = document.createElement('div');
+  title.className = 'related-title';
+  title.textContent = keys.length ? 'FIRE routes through this structure' : 'FIRE routes';
+  relatedPathwaysEl.appendChild(title);
+  if (keys.length) {
+    const row = document.createElement('div');
+    row.className = 'related-row';
+    for (const key of keys) {
+      row.appendChild(makeActionButton(`✦ ${FIRE_ACTION_LABELS[key] || key}`, () => ignitePathway(key), { className: 'related-fire' }));
+    }
+    relatedPathwaysEl.appendChild(row);
+  } else {
+    const empty = document.createElement('p');
+    empty.className = 'related-empty';
+    empty.textContent = 'No FIRE graph routes through this exact mesh yet — “Pulse here” is a local teaching flare, not an invented tract.';
+    relatedPathwaysEl.appendChild(empty);
+  }
+}
+
+/* ── Sprint 2A · Slice lab (clipping planes) ──────────────────────── */
+
+function ensureSliceHelper() {
+  if (sliceHelper) return;
+  const size = Math.max(modelRadius * 1.05, 0.05);
+  sliceHelper = new THREE.PlaneHelper(slicePlane, size, 0x20d7e5);
+  sliceHelper.material.transparent = true;
+  sliceHelper.material.opacity = 0.2;
+  sliceHelper.material.depthTest = false;
+  sliceHelper.renderOrder = 15;
+  sliceHelper.visible = Boolean(sliceEnabledInput?.checked);
+  scene.add(sliceHelper);
+}
+
+function sliceAnatomicalNote(value) {
+  const pct = `${value > 0 ? '+' : ''}${value}%`;
+  if (sliceAxis === 'sagittal') {
+    return `Sagittal plane ${value === 0 ? 'at the midline' : `${pct} toward subject ${value > 0 ? 'left' : 'right'}`}; keeping the subject-${sliceFlipped ? 'left' : 'right'} side.`;
+  }
+  if (sliceAxis === 'axial') {
+    return `Axial plane ${pct} from centre toward ${value >= 0 ? 'superior' : 'inferior'}; keeping the ${sliceFlipped ? 'superior' : 'inferior'} side.`;
+  }
+  return `Coronal plane ${pct} from centre toward ${value >= 0 ? 'anterior' : 'posterior'}; keeping the ${sliceFlipped ? 'anterior' : 'posterior'} side.`;
+}
+
+function applySlice() {
+  if (!sliceEnabledInput || !slicePositionInput) return;
+  const enabled = sliceEnabledInput.checked;
+  const value = Number(slicePositionInput.value) || 0;
+  const axisVector = sliceAxis === 'sagittal'
+    ? new THREE.Vector3(1, 0, 0)
+    : sliceAxis === 'axial'
+      ? new THREE.Vector3(0, 1, 0)
+      : new THREE.Vector3(0, 0, 1);
+  const dimension = sliceAxis === 'sagittal' ? modelSize.x : sliceAxis === 'axial' ? modelSize.y : modelSize.z;
+  const centre = sliceAxis === 'sagittal' ? modelCenter.x : sliceAxis === 'axial' ? modelCenter.y : modelCenter.z;
+  const planeCoord = centre + (value / 100) * (dimension / 2);
+  slicePlane.normal.copy(axisVector).multiplyScalar(sliceFlipped ? 1 : -1);
+  slicePlane.constant = sliceFlipped ? -planeCoord : planeCoord;
+
+  const desired = enabled ? activeSlicePlanes : null;
+  for (const e of entries) {
+    const m = e.mesh.material;
+    if (m.clippingPlanes !== desired) {
+      m.clippingPlanes = desired;
+      m.needsUpdate = true;
+    }
+  }
+  ensureSliceHelper();
+  if (sliceHelper) sliceHelper.visible = enabled;
+  if (sliceValueEl) sliceValueEl.textContent = `${value > 0 ? '+' : ''}${value}%`;
+  if (sliceNoteEl) sliceNoteEl.textContent = sliceAnatomicalNote(value);
+  document.querySelectorAll('[data-slice-axis]').forEach(b =>
+    b.setAttribute('aria-pressed', String(b.dataset.sliceAxis === sliceAxis)));
+}
+
+function configureSlice({ enabled, axis, position, flipped } = {}) {
+  if (axis) sliceAxis = axis;
+  if (typeof flipped === 'boolean') sliceFlipped = flipped;
+  if (typeof enabled === 'boolean' && sliceEnabledInput) sliceEnabledInput.checked = enabled;
+  if (Number.isFinite(position) && slicePositionInput) slicePositionInput.value = String(position);
+  applySlice();
+}
+
+
+/* ── Sprint 2B · neighbours ───────────────────────────────────────── */
+
+function boxGap(a, b) {
+  const dx = Math.max(0, Math.max(a.min.x - b.max.x, b.min.x - a.max.x));
+  const dy = Math.max(0, Math.max(a.min.y - b.max.y, b.min.y - a.max.y));
+  const dz = Math.max(0, Math.max(a.min.z - b.max.z, b.min.z - a.max.z));
+  return Math.hypot(dx, dy, dz);
+}
+
+function computeNeighbours(entry) {
+  if (!entry) return [];
+  const selfBox = new THREE.Box3().setFromObject(entry.mesh);
+  const selfCentre = selfBox.getCenter(new THREE.Vector3());
+  const spatial = [];
+  for (const e of entries) {
+    if (e === entry || hiddenEntries.has(e) || !e.mesh.visible) continue;
+    const box = new THREE.Box3().setFromObject(e.mesh);
+    spatial.push({
+      entry: e,
+      gap: boxGap(selfBox, box),
+      centreDist: selfCentre.distanceTo(box.getCenter(new THREE.Vector3()))
+    });
+  }
+  spatial.sort((a, b) => a.gap - b.gap || a.centreDist - b.centreDist);
+
+  const graph = [];
+  if (IS_BP3D && fireGraph) {
+    for (const [key, def] of Object.entries(fireGraph)) {
+      const sequences = [
+        (def.stations || []).map(st => st.entry).filter(Boolean),
+        (def.entries || []).filter(Boolean)
+      ];
+      for (const seq of sequences) {
+        const i = seq.indexOf(entry);
+        if (i < 0) continue;
+        for (const j of [i - 1, i + 1]) {
+          if (seq[j] && seq[j] !== entry) {
+            graph.push({ entry: seq[j], relation: `FIRE · ${FIRE_ACTION_LABELS[key] || key}`, graph: true });
+          }
+        }
+      }
+    }
+  }
+
+  const out = [];
+  const seen = new Set([entry]);
+  for (const g of graph) {
+    if (seen.has(g.entry) || out.length >= 4) continue;
+    seen.add(g.entry);
+    out.push(g);
+  }
+  const nearLimit = modelRadius * 0.04;
+  for (const sp of spatial) {
+    if (out.length >= 8) break;
+    if (seen.has(sp.entry)) continue;
+    if (sp.gap > nearLimit && out.length >= 4) break;
+    seen.add(sp.entry);
+    out.push({
+      entry: sp.entry,
+      relation: sp.gap < 0.0005 ? 'adjacent' : (IS_BP3D ? `~${Math.max(1, Math.round(sp.gap * 1000))} mm away` : 'nearby'),
+      graph: false
+    });
+  }
+  return out;
+}
+
+function updateNeighbours() {
+  neighbourDetails = neighbourMode && selected ? computeNeighbours(selected) : [];
+  neighbourEntries = neighbourDetails.map(d => d.entry);
+  neighbourSet.clear();
+  for (const e of neighbourEntries) neighbourSet.add(e);
+}
+
+function renderNeighbourPanel() {
+  if (!neighbourPanelEl) return;
+  neighbourPanelEl.innerHTML = '';
+  if (!selected || !neighbourMode) return;
+  const title = document.createElement('div');
+  title.className = 'related-title neighbour-title';
+  title.textContent = 'Neighbours · tap to visit';
+  neighbourPanelEl.appendChild(title);
+  if (!neighbourDetails.length) {
+    const empty = document.createElement('p');
+    empty.className = 'related-empty';
+    empty.textContent = 'No visible neighbours in touch range under the current layers.';
+    neighbourPanelEl.appendChild(empty);
+    return;
+  }
+  const list = document.createElement('div');
+  list.className = 'neighbour-list';
+  for (const d of neighbourDetails) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'neighbour-chip' + (d.graph ? ' graph' : '');
+    const name = document.createElement('span');
+    name.textContent = d.entry.name;
+    const rel = document.createElement('span');
+    rel.className = 'neighbour-relation';
+    rel.textContent = d.relation;
+    b.append(name, rel);
+    b.addEventListener('click', () => selectEntry(d.entry));
+    list.appendChild(b);
+  }
+  neighbourPanelEl.appendChild(list);
+  const note = document.createElement('p');
+  note.className = 'related-empty';
+  note.textContent = 'Spatial neighbours are computed from this model’s mesh bounding boxes — a teaching approximation, not a surgical adjacency atlas.';
+  neighbourPanelEl.appendChild(note);
+}
+
+/* ── Sprint 2B · floating labels ──────────────────────────────────── */
+
+const LANDMARK_LABELS = [
+  { pattern: '^Left superior frontal gyrus$', label: 'Sup. frontal gyrus', priority: 6 },
+  { pattern: '^Left precentral gyrus$', label: 'Precentral · M1', priority: 8 },
+  { pattern: '^Left postcentral gyrus$', label: 'Postcentral · S1', priority: 7 },
+  { pattern: '^Left superior temporal gyrus$', label: 'Sup. temporal', priority: 5 },
+  { pattern: '^Left cuneus$', label: 'Cuneus · V1', priority: 6 },
+  { pattern: '^Left insula$', label: 'Insula', priority: 7 },
+  { pattern: '^Corpus callosum$', label: 'Corpus callosum', priority: 8 },
+  { pattern: '^Left internal capsule$', label: 'Internal capsule', priority: 7 },
+  { pattern: '^Left fornix$', label: 'Fornix', priority: 5 },
+  { pattern: '^Left thalamus$', label: 'Thalamus', priority: 10 },
+  { pattern: '^Hypothalamus$', label: 'Hypothalamus', priority: 8 },
+  { pattern: '^Left caudate nucleus$', label: 'Caudate', priority: 6 },
+  { pattern: '^Left putamen$', label: 'Putamen', priority: 6 },
+  { pattern: '^Left globus pallidus$', label: 'Globus pallidus', priority: 5 },
+  { pattern: '^Left hippocampus$', label: 'Hippocampus', priority: 7 },
+  { pattern: '^Left amygdala$', label: 'Amygdala', priority: 5 },
+  { pattern: '^Left lateral ventricle$', label: 'Lat. ventricle', priority: 6 },
+  { pattern: '^Third ventricle$', label: '3rd ventricle', priority: 6 },
+  { pattern: '^Fourth ventricle$', label: '4th ventricle', priority: 6 },
+  { pattern: '^Optic chiasm$', label: 'Optic chiasm', priority: 7 },
+  { pattern: '^Cerebellum$', label: 'Cerebellum', priority: 9 },
+  { pattern: '^Pons$', label: 'Pons', priority: 9 },
+  { pattern: '^Medulla oblongata$', label: 'Medulla', priority: 8 },
+  { pattern: '^Spinal cord$', label: 'Spinal cord', priority: 10 },
+  { pattern: '^Cauda equina$', label: 'Cauda equina', priority: 5 }
+];
+
+function ensureLabelPool(size) {
+  while (labelPool.length < size) {
+    const el = document.createElement('div');
+    el.className = 'structure-label';
+    el.style.display = 'none';
+    labelsLayerEl.appendChild(el);
+    labelPool.push(el);
+  }
+}
+
+function maxLabelCount() {
+  if (neighbourMode) return innerWidth <= 700 ? 7 : 9;
+  return innerWidth <= 700 ? 8 : innerWidth <= 1100 ? 12 : 16;
+}
+
+function labelCandidates() {
+  const byEntry = new Map();
+  const add = (entry, label, kind, priority) => {
+    if (!entry || !entry.mesh.visible || hiddenEntries.has(entry)) return;
+    const prev = byEntry.get(entry);
+    if (!prev || priority > prev.priority) byEntry.set(entry, { entry, label, kind, priority });
+  };
+  if (labelsEnabledInput?.checked) {
+    const deepRevealed = ghostModeInput.checked || ghostOthers || isolateInput.checked || sliceEnabledInput?.checked || Boolean(activeTour);
+    for (const def of landmarkLabels) {
+      const e = def.entry;
+      const deepish = e.category === 'deep' || e.category === 'white';
+      if (deepish && !deepRevealed && e !== selected) continue;
+      add(e, def.label, e === selected ? 'selected' : 'landmark', e === selected ? 100 : def.priority);
+    }
+  }
+  if (neighbourMode && selected) {
+    add(selected, selected.name, 'selected', 100);
+    neighbourEntries.forEach((e, i) => add(e, e.name, 'neighbour', 90 - i));
+  } else if (selected && (labelsEnabledInput?.checked || activeTour)) {
+    add(selected, selected.name, 'selected', 100);
+  }
+  return [...byEntry.values()].sort((a, b) => b.priority - a.priority).slice(0, maxLabelCount());
+}
+
+function updateLabels() {
+  if (!labelsLayerEl || !labelLeadersEl) return;
+  const active = Boolean(labelsEnabledInput?.checked || neighbourMode || activeTour);
+  if (!active || !entries.length) {
+    if (labelsWereActive) {
+      for (const el of labelPool) el.style.display = 'none';
+      labelLeadersEl.innerHTML = '';
+      labelsWereActive = false;
+    }
+    return;
+  }
+  labelsWereActive = true;
+  const candidates = labelCandidates();
+  ensureLabelPool(Math.max(candidates.length, 1));
+  const w = innerWidth, h = innerHeight;
+  labelLeadersEl.setAttribute('viewBox', `0 0 ${w} ${h}`);
+  const compact = isCompactLayout();
+  const topLimit = compact ? 94 : 16;
+  const bottomLimit = compact && activeTour ? h * 0.54 : h - (compact ? 96 : 40);
+  const placed = [];
+  const obstacles = [];
+  for (const sel of ['.brandbar', '#controlPanel', '#selectedCard', '#liveCaption', '#tourCard', '#igniteConsole', '#mobileNav', '.mobile-hint']) {
+    const el = document.querySelector(sel);
+    if (!el) continue;
+    const cs = getComputedStyle(el);
+    if (cs.display === 'none' || cs.visibility === 'hidden' || Number(cs.opacity) < 0.05) continue;
+    const r = el.getBoundingClientRect();
+    if (r.width > 0 && r.height > 0) obstacles.push({ left: r.left, top: r.top, right: r.right, bottom: r.bottom });
+  }
+  const lines = [];
+  let used = 0;
+  const v = new THREE.Vector3();
+
+  for (const cand of candidates) {
+    v.copy(getEntryCenter(cand.entry)).project(camera);
+    if (v.z > 1 || v.z < -1) continue;
+    const ax = (v.x * 0.5 + 0.5) * w;
+    const ay = (-v.y * 0.5 + 0.5) * h;
+    if (ax < -40 || ax > w + 40 || ay < -40 || ay > h + 40) continue;
+    const el = labelPool[used];
+    if (!el) break;
+    el.textContent = cand.label;
+    el.className = `structure-label ${cand.kind}`;
+    el.style.display = 'block';
+    el.style.visibility = 'hidden';
+    el.style.left = '0px';
+    el.style.top = '0px';
+    const lw = el.offsetWidth, lh = el.offsetHeight;
+    const placements = [
+      { cx: ax, cy: ay - 36 },
+      { cx: ax + lw / 2 + 24, cy: ay - 12 },
+      { cx: ax - lw / 2 - 24, cy: ay - 12 },
+      { cx: ax, cy: ay + 36 }
+    ];
+    let chosen = null;
+    for (const p of placements) {
+      const rect = { left: p.cx - lw / 2, top: p.cy - lh / 2, right: p.cx + lw / 2, bottom: p.cy + lh / 2 };
+      if (rect.left < 6 || rect.right > w - 6 || rect.top < topLimit || rect.bottom > bottomLimit) continue;
+      const overlaps = [...placed, ...obstacles].some(r => rect.left < r.right + 4 && rect.right > r.left - 4 && rect.top < r.bottom + 4 && rect.bottom > r.top - 4);
+      if (!overlaps) { chosen = rect; break; }
+    }
+    if (!chosen) { el.style.display = 'none'; continue; }
+    placed.push(chosen);
+    el.style.left = `${chosen.left}px`;
+    el.style.top = `${chosen.top}px`;
+    el.style.visibility = 'visible';
+    const lx = THREE.MathUtils.clamp(ax, chosen.left, chosen.right);
+    const ly = THREE.MathUtils.clamp(ay, chosen.top, chosen.bottom);
+    lines.push(`<line class="${cand.kind}" x1="${ax.toFixed(1)}" y1="${ay.toFixed(1)}" x2="${lx.toFixed(1)}" y2="${ly.toFixed(1)}"/>`);
+    lines.push(`<circle class="${cand.kind}" cx="${ax.toFixed(1)}" cy="${ay.toFixed(1)}" r="2.6"/>`);
+    used++;
+  }
+  for (let i = used; i < labelPool.length; i++) labelPool[i].style.display = 'none';
+  labelLeadersEl.innerHTML = lines.join('');
+}
+
+/* ── Sprint 2A · guided tours ─────────────────────────────────────── */
+
+const GUIDED_TOURS = {
+  first: {
+    label: 'First incision',
+    steps: [
+      { title: 'Meet the territory', text: 'One continuous neuraxis: cerebrum above, brainstem as the stalk, cord descending behind. Orbit freely — the tour will wait for you.', preset: 'overview', view: 'reset', explode: 0, slice: { enabled: false } },
+      { title: 'The executive surface', text: 'The superior frontal gyrus — planning, working memory and the medial face of the frontal lobe. Cortex is only the shell of this city.', pattern: '^Left (superior frontal gyrus|frontal lobe)$', preset: 'overview' },
+      { title: 'Where movement begins', text: 'Precentral gyrus: upper motor neurons of the corticospinal tract. Watch their order descend — and note it still has not crossed.', pattern: '^Right (precentral gyrus|frontal lobe)$', ignite: 'cst' },
+      { title: 'The hidden island', text: 'The insula hides beneath the lateral sulcus — interoception, taste, pain and autonomic colour. X-ray mode brings it forward.', pattern: '^Left insula$', preset: 'deep' },
+      { title: 'Open the midline', text: 'A sagittal slice parts the hemispheres. The corpus callosum — ~200 million commissural fibres — is the bridge you are looking along.', pattern: '^Corpus callosum$', preset: 'white', slice: { enabled: true, axis: 'sagittal', position: 10, flipped: false } },
+      { title: 'Down the axis', text: 'From cortex to conus in one structure. Every long tract in FIRE climbs or descends this cord — its cross-section is the lesion-localiser’s map.', pattern: '^Spinal cord$', preset: 'cord', explode: 22, slice: { enabled: false } }
+    ]
+  },
+  deep: {
+    label: 'Deep relay empire',
+    steps: [
+      { title: 'The great relay', text: 'Thalamus: almost every sensory stream synapses here before cortex. If cortex is the capital, this is its border crossing.', pattern: '^Left thalamus$', preset: 'deep' },
+      { title: 'The body’s thermostat', text: 'Hypothalamus — grams of tissue governing temperature, hunger, thirst, circadian rhythm and the pituitary below it.', pattern: '^Hypothalamus$', preset: 'deep' },
+      { title: 'The striatal arc', text: 'Caudate nucleus sweeps in a C around the thalamus, following the lateral ventricle — procedural learning and habit live along this arc.', pattern: '^Left caudate nucleus$', preset: 'deep' },
+      { title: 'Putamen: motor striatum', text: 'Together with the caudate it forms the striatum, the input stage of the basal ganglia loops that gate movement.', pattern: '^Left putamen$', preset: 'deep' },
+      { title: 'Globus pallidus: the gate', text: 'The pallidum is the basal ganglia’s output throttle — too much or too little braking here becomes Parkinsonism or dyskinesia.', pattern: '^Left globus pallidus$', preset: 'deep' },
+      { title: 'The memory seahorse', text: 'Hippocampus in the medial temporal lobe — encoding new episodic memories. Its fornix is the great output arc.', pattern: '^Left hippocampus$', preset: 'deep' },
+      { title: 'The capsule bottleneck', text: 'Internal capsule: nearly all cortical traffic funnels through this white-matter corridor — which is why a tiny capsular stroke can paralyse a whole side. Igniting CST through it now.', pattern: '^Right internal capsule$', preset: 'white', ignite: 'cst' }
+    ]
+  },
+  crossings: {
+    label: 'Crossing stories',
+    steps: [
+      { title: 'Fine touch climbs uncrossed', text: 'Dorsal columns ascend the cord on the SAME side. Watch cyan rise from cord to medulla before any crossing happens.', pattern: '^Spinal cord$', preset: 'cord', ignite: 'dcml' },
+      { title: 'The medullary crossing', text: 'In the medulla, dorsal-column fibres synapse and sweep across as internal arcuate fibres — only now does fine touch change sides.', pattern: '^Medulla oblongata$', preset: 'cord' },
+      { title: 'Pain crosses immediately', text: 'Spinothalamic fibres cross in the anterior white commissure within a segment or two of entry. Same cord, opposite rule — igniting it now.', pattern: '^Spinal cord$', preset: 'cord', ignite: 'stt' },
+      { title: 'Race the decussations', text: 'Both systems together: cyan crosses high, rose crosses low. That single contrast produces the dissociated sensory loss of cord syndromes.', pattern: '^Right thalamus$', preset: 'cord', ignite: 'race' },
+      { title: 'The chiasm sorts by field', text: 'Vision breaks the body-side rule entirely: nasal fibres cross, temporal fibres stay, and each tract thereafter carries a visual hemifield.', pattern: '^Optic chiasm$', preset: 'overview', ignite: 'vision' }
+    ]
+  }
+};
+
+function updateTourChrome() {
+  if (!activeTour || !tourCardEl) return;
+  const step = activeTour.steps[tourStepIndex];
+  tourProgressEl.textContent = `${activeTour.label.toUpperCase()} · ${tourStepIndex + 1} / ${activeTour.steps.length}`;
+  tourTitleEl.textContent = step.title;
+  tourTextEl.textContent = step.text;
+  tourBackBtn.disabled = tourStepIndex === 0;
+  tourNextBtn.textContent = tourStepIndex === activeTour.steps.length - 1 ? 'Finish ✦' : 'Next →';
+  tourDotsEl.innerHTML = activeTour.steps
+    .map((_, i) => `<span class="${i === tourStepIndex ? 'active' : ''}"></span>`)
+    .join('');
+}
+
+function runTourStep() {
+  if (!activeTour) return;
+  const step = activeTour.steps[tourStepIndex];
+  if (tourIgniteTimer) clearTimeout(tourIgniteTimer);
+  if (step.preset) applyLayerPreset(step.preset);
+  if (step.slice) configureSlice(step.slice);
+  if (Number.isFinite(step.explode)) {
+    explodeInput.value = String(step.explode);
+    updateExplode(step.explode / 100);
+  }
+  const entry = step.pattern ? findEntry(new RegExp(step.pattern, 'i')) : null;
+  if (entry) {
+    selectEntry(entry, { focus: step.focus !== false, revealDetails: false });
+  } else if (step.view) {
+    setView(step.view);
+  }
+  updateTourChrome();
+  if (step.ignite) {
+    tourIgniteTimer = setTimeout(() => ignitePathway(step.ignite), 650);
+  }
+}
+
+function startTour(key) {
+  const tour = GUIDED_TOURS[key];
+  if (!tour || !entries.length) return;
+  restoreStructureModes(false);
+  configureSlice({ enabled: false });
+  activeTour = tour;
+  activeTourKey = key;
+  tourStepIndex = 0;
+  document.body.classList.add('tour-active');
+  if (tourCardEl) tourCardEl.hidden = false;
+  if (isCompactLayout()) setMobilePanel('explore');
+  controls.autoRotate = false;
+  runTourStep();
+}
+
+function endTour(restore = true) {
+  if (!activeTour) return;
+  if (tourIgniteTimer) clearTimeout(tourIgniteTimer);
+  activeTour = null;
+  activeTourKey = null;
+  tourStepIndex = 0;
+  document.body.classList.remove('tour-active');
+  if (tourCardEl) tourCardEl.hidden = true;
+  if (restore) {
+    configureSlice({ enabled: false });
+    explodeInput.value = '0';
+    updateExplode(0);
+    applyLayerPreset('overview');
+    setView('reset');
+  }
+  setCaption('TOUR COMPLETE', 'The territory is yours again — orbit freely, dissect with the Slice lab, or start another route.');
 }
 
 const LAYER_PRESETS = {
@@ -369,7 +1035,9 @@ function updateVisibility() {
   for (const e of entries) {
     const inCategory = activeCategories.has(e.category)
       && (e.defaultVisible !== false || e.revealed || manuallyEnabledCategories.has(e.category));
-    e.mesh.visible = isolateInput.checked && selected ? e.mesh === selected.mesh : inCategory;
+    e.mesh.visible = hiddenEntries.has(e)
+      ? false
+      : (isolateInput.checked && selected ? e.mesh === selected.mesh : inCategory);
     if (e.mesh.visible) visible++;
   }
   visibleCountEl.textContent = String(visible);
@@ -421,18 +1089,27 @@ function clearSelectionHighlight() {
   selected.mesh.material.emissiveIntensity = 0;
 }
 
-function selectEntry(entry, { focus = true } = {}) {
+function selectEntry(entry, { focus = true, revealDetails = focus } = {}) {
   clearSelectionHighlight();
   selected = entry;
   if (!entry) {
     selectedName.textContent = 'Enter the neuraxis';
     selectedMeta.textContent = 'Drag to orbit. Scroll to zoom. Click any glowing structure — or search by name.';
     selectedStats.innerHTML = '';
+    dossierBody.innerHTML = '';
+    ghostOthers = false;
+    neighbourMode = false;
+    updateNeighbours();
+    renderNeighbourPanel();
     if (selectionBox) selectionBox.visible = false;
+    applyGhostMode();
     updateVisibility();
+    renderSelectedActions();
+    if (isCompactLayout()) setMobilePanel('explore');
     return;
   }
 
+  hiddenEntries.delete(entry);
   entry.mesh.material.emissive.setHex(0x20d7e5);
   entry.mesh.material.emissiveIntensity = 0.46;
 
@@ -476,8 +1153,13 @@ function selectEntry(entry, { focus = true } = {}) {
     manuallyEnabledCategories.add(entry.category);
     createCategoryToggles();
   }
+  if (ghostOthers) applyGhostMode();
   updateVisibility();
   if (focus) focusEntry(entry);
+  if (neighbourMode) updateNeighbours();
+  renderNeighbourPanel();
+  renderSelectedActions();
+  if (revealDetails && isCompactLayout()) setMobilePanel('details');
 }
 
 function renderSearch() {
@@ -498,6 +1180,7 @@ function renderSearch() {
     button.addEventListener('click', () => {
       searchInput.value = e.name;
       searchResults.innerHTML = '';
+      if (isCompactLayout()) searchInput.blur();
       selectEntry(e);
     });
     searchResults.appendChild(button);
@@ -510,8 +1193,26 @@ function renderSearch() {
   }
 }
 
+function fittedDistance(direction, margin = 1.13) {
+  const dir = direction.clone().normalize();
+  const upHint = Math.abs(dir.y) > 0.9
+    ? new THREE.Vector3(0, 0, -1)
+    : new THREE.Vector3(0, 1, 0);
+  const right = new THREE.Vector3().crossVectors(upHint, dir).normalize();
+  const up = new THREE.Vector3().crossVectors(dir, right).normalize();
+  const half = modelSize.clone().multiplyScalar(0.5);
+  const projectedHalfExtent = axis =>
+    Math.abs(half.x * axis.x) + Math.abs(half.y * axis.y) + Math.abs(half.z * axis.z);
+  const halfWidth = projectedHalfExtent(right);
+  const halfHeight = projectedHalfExtent(up);
+  const halfDepth = projectedHalfExtent(dir);
+  const halfFovTan = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+  const fitHeight = halfHeight / halfFovTan;
+  const fitWidth = halfWidth / (halfFovTan * Math.max(camera.aspect, 0.1));
+  return Math.max(modelRadius * 1.15, (halfDepth + Math.max(fitHeight, fitWidth)) * margin);
+}
+
 function setView(name) {
-  const distance = modelRadius * 3.2;
   const vectors = {
     front: new THREE.Vector3(0, 0.16, 1),
     side: new THREE.Vector3(1, 0.16, 0.08),
@@ -519,7 +1220,7 @@ function setView(name) {
     reset: new THREE.Vector3(0.72, 0.36, 1)
   };
   const v = (vectors[name] || vectors.reset).normalize();
-  animateCamera(modelCenter.clone().addScaledVector(v, distance), modelCenter.clone(), 1000);
+  animateCamera(modelCenter.clone().addScaledVector(v, fittedDistance(v)), modelCenter.clone(), 1000);
 }
 
 function setCaption(kicker, text) {
@@ -611,6 +1312,262 @@ function renderFireInfo(definition) {
   return [...pathwayInfoEl.querySelectorAll('li')];
 }
 
+
+/* ── Sprint 3 · IGNITE timeline engine ────────────────────────────── */
+
+function kindIcon(kind) {
+  return kind === 'decussation' ? '◆' : kind === 'synapse' ? '○' : kind === 'origin' ? '◎' : kind === 'target' ? '⬢' : '●';
+}
+
+function shortStationLabel(label) {
+  return String(label || '')
+    .replace(/^(◆|○)\s*/, '')
+    .replace(/\s*\(schematic[^)]*\)\s*/i, '')
+    .trim();
+}
+
+/** Cached curve per animation: rebuilt only while the explode value moves. */
+function refreshCurve(a) {
+  const key = Math.round(explodeCurrent * 500);
+  if (a.curve && a.curveExplodeKey === key) return a.curve;
+  a.curve = resolvePathCurve(a);
+  a.curveExplodeKey = key;
+  const pts = a.curve.getSpacedPoints(159);
+  for (let i = 0; i < pts.length; i++) {
+    a.linePositions[i * 3] = pts[i].x;
+    a.linePositions[i * 3 + 1] = pts[i].y;
+    a.linePositions[i * 3 + 2] = pts[i].z;
+  }
+  a.line.geometry.attributes.position.needsUpdate = true;
+  applyLineColors(a);
+  return a.curve;
+}
+
+function orderAtFraction(a, t) {
+  let order = 1;
+  for (const s of a.stations || []) {
+    if (s.kind === 'synapse' && t > s.at) order++;
+  }
+  return Math.min(order, ORDER_COLORS.length);
+}
+
+/** Vertex colours: base pathway colour, neuron-order bands, or lesioned-downstream grey. */
+function applyLineColors(a) {
+  if (!a.lineColors || !a.curve) return;
+  const base = new THREE.Color(a.color);
+  const tmp = new THREE.Color();
+  const dead = new THREE.Color(0x57463f);
+  for (let i = 0; i < 160; i++) {
+    const u = i / 159;
+    const t = typeof a.curve.getUtoTmapping === 'function' ? a.curve.getUtoTmapping(u) : u;
+    if (a.lesionAt !== null && t > a.lesionAt) tmp.copy(dead);
+    else if (ignite.orders) tmp.setHex(ORDER_COLORS[orderAtFraction(a, t) - 1]);
+    else tmp.copy(base);
+    a.lineColors[i * 3] = tmp.r;
+    a.lineColors[i * 3 + 1] = tmp.g;
+    a.lineColors[i * 3 + 2] = tmp.b;
+  }
+  a.line.geometry.attributes.color.needsUpdate = true;
+  (a.stations || []).forEach((st, i) => {
+    const m = a.markers?.[i];
+    if (m) m.material.color.setHex(a.lesionAt !== null && st.at > a.lesionAt ? 0x6b5a56 : m.userData.baseColor);
+  });
+}
+
+function syncStationStates(a) {
+  let current = -1;
+  (a.stations || []).forEach((st, i) => { if (a.progress >= st.at) current = i; });
+  (a.stations || []).forEach((st, i) => {
+    const lit = a.triggered.has(i);
+    const li = a.infoItems?.[i];
+    if (li) {
+      li.classList.toggle('lit', lit);
+      li.classList.toggle('lit-dec', lit && st.kind === 'decussation');
+      li.classList.toggle('lit-syn', lit && st.kind === 'synapse');
+    }
+    const chip = a.chips?.[i];
+    if (chip) {
+      chip.classList.toggle('lit', lit);
+      chip.classList.toggle('current', i === current);
+      chip.classList.toggle('lesioned', a.lesionAt !== null && st.at > a.lesionAt);
+      chip.classList.toggle('lesion-site', a.lesionAt !== null && st.at === a.lesionAt);
+    }
+  });
+}
+
+function captionForProgress(a) {
+  let st = null;
+  for (const s of a.stations || []) if (a.progress >= s.at) st = s;
+  setCaption(a.kicker, st?.caption || a.intro);
+}
+
+function seekAnimation(a, p, { burst = false } = {}) {
+  a.progress = THREE.MathUtils.clamp(p, 0, 1);
+  if (a.lesionAt !== null) a.progress = Math.min(a.progress, a.lesionAt);
+  a.began = true;
+  a.start = 0;
+  a.finished = a.progress >= 1;
+  a.triggered.clear();
+  let last = null;
+  (a.stations || []).forEach((st, i) => {
+    if (a.progress >= st.at) { a.triggered.add(i); last = st; }
+  });
+  if (burst && last?.entry) {
+    triggerBurst(last.entry, {
+      duration: last.kind === 'synapse' || last.kind === 'decussation' ? 2300 : 1700,
+      strength: last.kind === 'synapse' || last.kind === 'decussation' ? 1.45 : 1.15,
+      color: last.kind === 'decussation' ? 0xffd9a8 : a.color
+    });
+  }
+  syncStationStates(a);
+}
+
+function ignitionTimelineTotal() {
+  if (!pathwayAnimations.length) return 1;
+  return Math.max(1, ...pathwayAnimations.map(a => a.delayMs + a.duration));
+}
+
+function globalIgniteProgress() {
+  if (!pathwayAnimations.length) return 0;
+  const total = ignitionTimelineTotal();
+  return Math.max(...pathwayAnimations.map(a => (a.delayMs + a.progress * a.duration) / total));
+}
+
+function seekAll(globalP, { burst = false } = {}) {
+  const total = ignitionTimelineTotal();
+  for (const a of pathwayAnimations) {
+    seekAnimation(a, (globalP * total - a.delayMs) / a.duration, { burst });
+  }
+  if (pathwayAnimations[0]) captionForProgress(pathwayAnimations[0]);
+}
+
+function renderLesionNote() {
+  if (!igniteLesionNoteEl) return;
+  const lesioned = pathwayAnimations.find(a => a.lesionAt !== null);
+  if (!lesioned) {
+    igniteLesionNoteEl.hidden = true;
+    igniteLesionNoteEl.textContent = '';
+    return;
+  }
+  igniteLesionNoteEl.hidden = false;
+  igniteLesionNoteEl.textContent =
+    `✕ Interrupted at ${shortStationLabel(lesioned.lesionLabel)} — downstream stations go dark; nothing beyond this point arrives. ` +
+    `${lesioned.lesion || ''} Draft teaching note — expert review pending.`;
+}
+
+function setLesion(a, station) {
+  if (a.lesionAt === station.at) {
+    a.lesionAt = null;
+    a.lesionLabel = null;
+  } else {
+    a.lesionAt = station.at;
+    a.lesionLabel = station.label;
+    if (a.progress > station.at) seekAnimation(a, station.at);
+    if (station.entry) triggerBurst(station.entry, { duration: 1600, strength: 1.3, color: 0xff6b6b });
+  }
+  applyLineColors(a);
+  syncStationStates(a);
+  renderLesionNote();
+}
+
+function onStationChosen(a, station) {
+  if (ignite.lesionMode) { setLesion(a, station); return; }
+  const total = ignitionTimelineTotal();
+  seekAll((a.delayMs + station.at * a.duration) / total);
+  seekAnimation(a, station.at, { burst: true });
+  if (station.caption) setCaption(a.kicker, station.caption);
+  ignite.playing = false;
+  updateIgniteTransportUI();
+}
+
+function updateIgniteTransportUI() {
+  if (!igniteConsoleEl) return;
+  ignitePlayEl.textContent = ignite.playing ? '⏸' : '▶';
+  ignitePlayEl.setAttribute('aria-pressed', String(ignite.playing));
+  igniteSpeedEl.textContent = `${ignite.speed}×`;
+  igniteStepEl.setAttribute('aria-pressed', String(ignite.step));
+  igniteFollowEl.setAttribute('aria-pressed', String(ignite.follow));
+  igniteOrdersEl.setAttribute('aria-pressed', String(ignite.orders));
+  igniteLesionEl.setAttribute('aria-pressed', String(ignite.lesionMode));
+  igniteLoopEl.setAttribute('aria-pressed', String(ignite.loop));
+  igniteLegendEl.hidden = !ignite.orders;
+  igniteConsoleEl.classList.toggle('lesion-mode', ignite.lesionMode);
+}
+
+function renderIgniteConsole() {
+  if (!igniteConsoleEl) return;
+  const active = pathwayAnimations.length > 0;
+  igniteConsoleEl.hidden = !active;
+  document.body.classList.toggle('ignite-on', active);
+  if (!active) return;
+  igniteTitleEl.textContent = pathwayAnimations.length > 1
+    ? `Race · ${pathwayAnimations.map(a => a.label).join(' vs ')}`
+    : pathwayAnimations[0].label;
+  igniteStationsEl.innerHTML = '';
+  for (const a of pathwayAnimations) {
+    const row = document.createElement('div');
+    row.className = 'ignite-station-row';
+    if (pathwayAnimations.length > 1) {
+      const h = document.createElement('div');
+      h.className = 'ignite-row-label';
+      h.textContent = a.label;
+      row.appendChild(h);
+    }
+    const wrap = document.createElement('div');
+    wrap.className = 'ignite-chip-wrap';
+    a.chips = (a.stations || []).map(st => {
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = `ignite-chip kind-${st.kind}`;
+      chip.textContent = `${kindIcon(st.kind)} ${shortStationLabel(st.label)}`;
+      chip.title = st.label;
+      chip.addEventListener('click', () => onStationChosen(a, st));
+      wrap.appendChild(chip);
+      return chip;
+    });
+    row.appendChild(wrap);
+    igniteStationsEl.appendChild(row);
+    syncStationStates(a);
+  }
+  updateIgniteTransportUI();
+  renderLesionNote();
+}
+
+function clearIgnitions() {
+  while (pathwayAnimations.length) disposePathway(pathwayAnimations.pop());
+  renderIgniteConsole();
+}
+
+function restartIgnitions() {
+  const now = performance.now();
+  for (const a of pathwayAnimations) {
+    a.progress = 0;
+    a.began = false;
+    a.finished = false;
+    a.start = now + a.delayMs;
+    a.triggered.clear();
+    syncStationStates(a);
+  }
+  ignite.playing = true;
+  updateIgniteTransportUI();
+  if (pathwayAnimations[0]) setCaption(pathwayAnimations[0].kicker, pathwayAnimations[0].intro);
+}
+
+function stepStation(dir) {
+  const a = pathwayAnimations[0];
+  if (!a) return;
+  const ats = (a.stations || []).map(st => st.at);
+  let target = dir > 0
+    ? ats.find(at => at > a.progress + 0.0015)
+    : [...ats].reverse().find(at => at < a.progress - 0.0015);
+  if (target === undefined) target = dir > 0 ? 1 : 0;
+  seekAll((a.delayMs + target * a.duration) / ignitionTimelineTotal());
+  seekAnimation(a, target, { burst: true });
+  captionForProgress(a);
+  ignite.playing = false;
+  updateIgniteTransportUI();
+}
+
 function createPathway(definition, delay = 0) {
   const isGraph = definition.kind === 'graph';
   const sequence = isGraph
@@ -627,9 +1584,11 @@ function createPathway(definition, delay = 0) {
   const group = new THREE.Group();
   const lineGeometry = new THREE.BufferGeometry();
   const linePositions = new Float32Array(160 * 3);
+  const lineColors = new Float32Array(160 * 3);
   lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
+  lineGeometry.setAttribute('color', new THREE.BufferAttribute(lineColors, 3));
   const lineMaterial = new THREE.LineBasicMaterial({
-    color: definition.color,
+    vertexColors: true,
     transparent: true,
     opacity: 0.78,
     depthWrite: false,
@@ -640,13 +1599,38 @@ function createPathway(definition, delay = 0) {
   line.renderOrder = 20;
   group.add(line);
 
-  const markers = sequence.map(() => {
+  // Branch/loop curves (vision Meyer loop + crossing fibres, pupillary
+  // consensual arm): static CatmullRom lines resolved once per ignition.
+  const extraLines = (definition.extraCurves || []).map(extra => {
+    const geo = new THREE.BufferGeometry().setFromPoints(
+      new THREE.CatmullRomCurve3(extra.buildPoints(), false, 'catmullrom', 0.12).getSpacedPoints(96)
+    );
+    const mat = new THREE.LineBasicMaterial({
+      color: extra.color ?? definition.color,
+      transparent: true,
+      opacity: 0.55,
+      depthWrite: false,
+      depthTest: false
+    });
+    const branch = new THREE.Line(geo, mat);
+    branch.frustumCulled = false;
+    branch.renderOrder = 19;
+    group.add(branch);
+    return { line: branch };
+  });
+
+  // Sprint 3 fix: markers are per STATION (not per sequence entry) and carry
+  // their kind styling — gold octahedra for decussations, bright synapses.
+  const markers = stations.map(station => {
+    const style = stationMarkerStyle(station.kind, definition.color);
     const marker = new THREE.Mesh(
-      sharedStationGeometry,
-      new THREE.MeshBasicMaterial({ color: definition.color, transparent: true, opacity: 0.86, depthWrite: false, depthTest: false })
+      style.geometry,
+      new THREE.MeshBasicMaterial({ color: style.color, transparent: true, opacity: 0.86, depthWrite: false, depthTest: false })
     );
     marker.renderOrder = 21;
-    marker.scale.setScalar(Math.max(modelRadius * 0.012, 0.004));
+    marker.userData.stationScale = style.scale;
+    marker.userData.baseColor = style.color;
+    marker.scale.setScalar(Math.max(modelRadius * 0.012 * style.scale, 0.004));
     group.add(marker);
     return marker;
   });
@@ -664,7 +1648,7 @@ function createPathway(definition, delay = 0) {
 
   pathwayGroup.add(group);
   const infoItems = isGraph ? renderFireInfo(definition) : null;
-  pathwayAnimations.push({
+  const anim = {
     ...definition,
     sequence,
     stations,
@@ -672,12 +1656,29 @@ function createPathway(definition, delay = 0) {
     group,
     line,
     linePositions,
+    lineColors,
     extraLines,
     markers,
     pulses,
     start: performance.now() + delay,
+    delayMs: delay,
+    progress: 0,
+    began: false,
+    finished: false,
+    lesionAt: null,
+    lesionLabel: null,
+    curve: null,
+    curveExplodeKey: NaN,
+    chips: [],
     triggered: new Set()
+  };
+  pathwayAnimations.push(anim);
+  refreshCurve(anim);
+  infoItems?.forEach((li, i) => {
+    li.style.cursor = 'pointer';
+    li.addEventListener('click', () => onStationChosen(anim, anim.stations[i]));
   });
+  renderIgniteConsole();
   setCaption(definition.kicker, definition.intro);
 }
 
@@ -791,6 +1792,10 @@ function pathwayDefinitions() {
 
 function ignitePathway(key) {
   if (!entries.length) return;
+  ignitionSeq++;
+  clearIgnitions();
+  ignite.playing = true;
+  if (isCompactLayout()) setMobilePanel('explore');
   controls.autoRotate = false;
   const defs = pathwayDefinitions();
 
@@ -840,69 +1845,89 @@ function disposePathway(animation) {
 }
 
 function updatePathways(now) {
+  const dt = lastPathwayTick ? Math.min(now - lastPathwayTick, 120) : 0;
+  lastPathwayTick = now;
   let newestHead = null;
-  for (let ai = pathwayAnimations.length - 1; ai >= 0; ai--) {
-    const a = pathwayAnimations[ai];
-    const elapsed = now - a.start;
-    if (elapsed < 0) {
-      a.group.visible = false;
-      continue;
+
+  for (const a of pathwayAnimations) {
+    if (!a.began) {
+      if (now < a.start) { a.group.visible = false; continue; }
+      a.began = true;
+      a.progress = 0;
     }
     a.group.visible = true;
-    const progress = THREE.MathUtils.clamp(elapsed / a.duration, 0, 1);
-    const curve = buildPathCurve(a.sequence, a.lateralOffset * modelRadius);
-    const pts = curve.getSpacedPoints(159);
-    for (let i = 0; i < pts.length; i++) {
-      a.linePositions[i * 3] = pts[i].x;
-      a.linePositions[i * 3 + 1] = pts[i].y;
-      a.linePositions[i * 3 + 2] = pts[i].z;
+
+    if (ignite.playing && !ignite.scrubbing && !a.finished) {
+      let next = a.progress + (dt * ignite.speed) / a.duration;
+      let stepPause = false;
+      if (ignite.step) {
+        const ev = (a.stations || []).find((st, i) =>
+          !a.triggered.has(i) &&
+          (st.kind === 'synapse' || st.kind === 'decussation' || st.kind === 'target') &&
+          st.at > a.progress && st.at <= next);
+        if (ev) { next = ev.at; stepPause = true; }
+      }
+      if (a.lesionAt !== null) next = Math.min(next, a.lesionAt);
+      a.progress = THREE.MathUtils.clamp(next, 0, 1);
+      a._stepPause = stepPause;
+      if (a.progress >= 1) a.finished = true;
     }
-    a.line.geometry.attributes.position.needsUpdate = true;
 
-    const fade = progress < 0.08 ? progress / 0.08 : progress > 0.88 ? (1 - progress) / 0.12 : 1;
+    const progress = a.progress;
+    const curve = refreshCurve(a);
+    const fade = progress < 0.08 ? 0.35 + 0.65 * (progress / 0.08) : 1;
     a.line.material.opacity = 0.78 * fade;
+    for (const extra of a.extraLines || []) extra.line.material.opacity = 0.55 * fade;
 
+    let stationsChanged = false;
     (a.stations || []).forEach((station, i) => {
-      const threshold = station.at;
       const marker = a.markers[i];
       if (!marker) return;
       marker.position.copy(station.getPoint(curve));
       if (station.kind === 'decussation') marker.rotation.y = now * 0.003;
-      const activated = progress >= threshold;
+      const activated = progress >= station.at;
       const pulseScale = activated ? 1.45 + Math.sin(now * 0.012 + i) * 0.18 : 0.85;
       marker.scale.setScalar(Math.max(modelRadius * 0.012 * (marker.userData.stationScale || 1) * pulseScale, 0.003));
-      marker.material.opacity = (activated ? 0.96 : 0.38) * fade;
+      const lesionedOut = a.lesionAt !== null && station.at > a.lesionAt;
+      marker.material.opacity = (lesionedOut ? 0.16 : activated ? 0.96 : 0.38) * fade;
       if (activated && !a.triggered.has(i)) {
         a.triggered.add(i);
+        stationsChanged = true;
         if (station.entry) {
           triggerBurst(station.entry, {
             duration: station.kind === 'synapse' || station.kind === 'decussation' ? 2300 : 1700,
             strength: station.kind === 'synapse' || station.kind === 'decussation' ? 1.45 : 1.15,
-            color: station.kind === 'decussation' ? 0xffd9a8 : a.color,
+            color: station.kind === 'decussation' ? 0xffd9a8 : a.color
           });
         }
-        if (station.caption) setCaption(a.kicker, station.caption);
-        const li = a.infoItems?.[i];
-        if (li) {
-          li.classList.add('lit');
-          if (station.kind === 'decussation') li.classList.add('lit-dec');
-          if (station.kind === 'synapse') li.classList.add('lit-syn');
-        }
+        if (station.caption && a === pathwayAnimations[0]) setCaption(a.kicker, station.caption);
+        else if (station.caption && pathwayAnimations.length === 1) setCaption(a.kicker, station.caption);
       }
     });
+    if (stationsChanged) syncStationStates(a);
+
+    if (a._stepPause) {
+      a._stepPause = false;
+      if (ignite.playing) { ignite.playing = false; updateIgniteTransportUI(); }
+    }
 
     a.pulses.forEach((pulse, j) => {
       const t = progress - j * 0.013;
-      pulse.visible = t >= 0 && t <= 1;
+      pulse.visible = !a.finished && t >= 0 && t <= 1;
       if (!pulse.visible) return;
       pulse.position.copy(curve.getPoint(t));
       pulse.material.opacity = Math.max(0, (0.98 - j * 0.065)) * fade;
       if (j === 0) newestHead = pulse.position.clone();
     });
+  }
 
-    if (progress >= 1) {
-      disposePathway(a);
-      pathwayAnimations.splice(ai, 1);
+  if (pathwayAnimations.length) {
+    if (!ignite.scrubbing && igniteScrubEl && !igniteConsoleEl.hidden) {
+      igniteScrubEl.value = String(Math.round(globalIgniteProgress() * 1000));
+    }
+    if (pathwayAnimations.every(a => a.finished || (a.lesionAt !== null && a.progress >= a.lesionAt))) {
+      if (ignite.loop && pathwayAnimations.every(a => a.finished)) restartIgnitions();
+      else if (ignite.playing) { ignite.playing = false; updateIgniteTransportUI(); }
     }
   }
   return newestHead;
@@ -952,6 +1977,9 @@ function updateAmbientLife(now) {
     if (selected?.mesh === e.mesh) {
       color = 0x20d7e5;
       intensity = Math.max(intensity, 0.5);
+    } else if (neighbourMode && neighbourSet.has(e)) {
+      color = 0xd9a48e;
+      intensity = Math.max(intensity, 0.42);
     }
     e.mesh.material.emissive.setHex(color);
     e.mesh.material.emissiveIntensity = intensity;
@@ -979,6 +2007,7 @@ function startVentricularJourney() {
   updateExplode(0);
   isolateInput.checked = false;
   ensureEntriesVisible(sequence);
+  if (isCompactLayout()) setMobilePanel('explore');
   controls.autoRotate = false;
   controls.enabled = false;
   cameraAnimation = null;
@@ -1029,29 +2058,31 @@ function updateJourney(now) {
     controls.enabled = true;
     if (destination) selectEntry(destination, { focus: false });
     setCaption('VOYAGE COMPLETE', 'You have travelled the ventricular route. Orbit freely, ignite a pathway, or enter again.');
-    animateCamera(
-      modelCenter.clone().add(new THREE.Vector3(modelRadius * 1.35, modelRadius * 0.5, modelRadius * 1.8)),
-      modelCenter.clone(),
-      1500
-    );
+    setView('reset');
   }
 }
 
 function awakenNeuraxia() {
   if (!entries.length) return;
+  if (isCompactLayout()) setMobilePanel('explore');
   livingModeInput.checked = true;
   controls.autoRotate = !prefersReducedMotion;
   setView('reset');
   explodeInput.value = 42;
   updateExplode(0.42);
   setCaption('NEURAXIA AWAKENS', 'Territories separate, signals ignite, and the neuraxis comes alive.');
-  setTimeout(() => ignitePathway('visual'), 650);
-  setTimeout(() => ignitePathway('sensory'), 2100);
+  const myAwaken = ++awakenSeq;
+  const baseSeq = ignitionSeq;
+  const later = (fn, ms, expect) => setTimeout(() => {
+    if (awakenSeq === myAwaken && ignitionSeq === baseSeq + expect) fn();
+  }, ms);
+  later(() => ignitePathway('visual'), 650, 0);
+  later(() => ignitePathway('sensory'), 2100, 1);
   setTimeout(() => {
     explodeInput.value = 0;
     updateExplode(0);
   }, 3300);
-  setTimeout(() => ignitePathway('motor'), 4200);
+  later(() => ignitePathway('motor'), 4200, 2);
 }
 
 function prepareModel(gltf) {
@@ -1104,6 +2135,7 @@ function prepareModel(gltf) {
   const cnsSphere = cnsBox.getBoundingSphere(new THREE.Sphere());
   modelCenter.copy(cnsSphere.center);
   modelRadius = Math.max(cnsSphere.radius, 0.001);
+  cnsBox.getSize(modelSize);
 
   for (const e of entries) {
     const horizontal = new THREE.Vector3(e.center.x - modelCenter.x, 0, e.center.z - modelCenter.z);
@@ -1121,7 +2153,8 @@ function prepareModel(gltf) {
   camera.near = Math.max(modelRadius / 500, 0.001);
   camera.far = Math.max(wholeSphere.radius * 30, 100);
   camera.updateProjectionMatrix();
-  camera.position.copy(modelCenter).add(new THREE.Vector3(modelRadius * 1.55, modelRadius * 0.72, modelRadius * 2.35));
+  const resetDirection = new THREE.Vector3(0.72, 0.36, 1).normalize();
+  camera.position.copy(modelCenter).addScaledVector(resetDirection, fittedDistance(resetDirection) * 1.18);
 
   meshCountEl.textContent = IS_BP3D
     ? `${entries.length} curated concepts · ${MODEL_PROFILE}`
@@ -1134,21 +2167,24 @@ function prepareModel(gltf) {
     ? buildFireGraphPathways({ THREE, Vector3: THREE.Vector3, findEntry, getEntryCenter, cordPointAt, radius: modelRadius })
     : null;
 
+  landmarkLabels = LANDMARK_LABELS
+    .map(def => ({ ...def, entry: findEntry(new RegExp(def.pattern, 'i')) }))
+    .filter(d => d.entry);
   createCategoryToggles();
   renderOptionalList();
   applyGhostMode();
+  ensureSliceHelper();
+  applySlice();
   updateVisibility();
   updateExplode(0);
+  renderSelectedActions();
 
   const preferred = entries.find(e => /left thalamus/i.test(e.name)) || defaultEntries[0];
   if (preferred) selectEntry(preferred, { focus: false });
-  animateCamera(
-    modelCenter.clone().add(new THREE.Vector3(modelRadius * 1.15, modelRadius * 0.45, modelRadius * 1.9)),
-    modelCenter.clone(),
-    1600
-  );
+  setView('reset');
   if (livingModeInput.checked && !prefersReducedMotion) {
-    setTimeout(() => ignitePathway('visual'), 950);
+    const seqAtPrep = ignitionSeq;
+    setTimeout(() => { if (ignitionSeq === seqAtPrep) ignitePathway('visual'); }, 950);
   } else {
     setCaption('LIVING NEURAXIS', 'Enable ambient activity, then press Awaken Neuraxia to ignite the circuits.');
   }
@@ -1156,31 +2192,87 @@ function prepareModel(gltf) {
 
 const gltfLoader = new GLTFLoader();
 gltfLoader.setMeshoptDecoder(MeshoptDecoder);
-gltfLoader.load(
-  MODEL_URL,
-  gltf => {
-    try {
-      prepareModel(gltf);
-      loaderFill.style.width = '100%';
-      loaderText.textContent = 'Territory ready.';
-      setTimeout(() => loaderEl.classList.add('done'), 350);
-    } catch (err) {
-      console.error(err);
-      loaderText.textContent = `Model loaded, but scene preparation failed: ${err.message}`;
-    }
-  },
-  xhr => {
-    if (xhr.total) {
-      const pct = Math.round((xhr.loaded / xhr.total) * 100);
-      loaderFill.style.width = `${Math.max(7, pct)}%`;
-      loaderText.textContent = `Entering the territory… ${pct}%`;
-    }
-  },
-  err => {
+
+function onModelLoaded(gltf) {
+  try {
+    prepareModel(gltf);
+    loaderFill.style.width = '100%';
+    loaderText.textContent = 'Territory ready.';
+    setTimeout(() => loaderEl.classList.add('done'), 350);
+  } catch (err) {
     console.error(err);
-    loaderText.textContent = `The ${IS_BP3D ? 'BodyParts3D candidate' : 'spike model'} could not be loaded. Check the browser console and model path.`;
+    loaderText.textContent = `Model loaded, but scene preparation failed: ${err.message}`;
   }
-);
+}
+function onModelError(err) {
+  console.error(err);
+  loaderText.textContent = `The ${IS_BP3D ? 'BodyParts3D candidate' : 'spike model'} could not be loaded. Check the browser console and model path.`;
+}
+
+// One-file edition support: models embedded as base64 in
+// window.__EMBEDDED_MODELS__ (see pipeline/build_single_file.py). Inert in
+// normal builds.
+const EMBEDDED_MODELS = (typeof window !== 'undefined' && window.__EMBEDDED_MODELS__) || null;
+function base64ToArrayBuffer(b64) {
+  const bin = atob(b64);
+  const bytes = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  return bytes.buffer;
+}
+
+if (EMBEDDED_MODELS) {
+  const wanted = IS_BP3D ? `bp3d-${MODEL_PROFILE}` : 'spike';
+  const fallback = `bp3d-${MODEL_PROFILE}`;
+  const key = EMBEDDED_MODELS[wanted] ? wanted : fallback;
+  const b64 = EMBEDDED_MODELS[key];
+  if (b64) {
+    loaderFill.style.width = '35%';
+    loaderText.textContent = key !== wanted
+      ? 'One-file edition: loading the BodyParts3D candidate (comparison spike not embedded)…'
+      : 'Unpacking the embedded neuraxis…';
+    setTimeout(() => {
+      loaderFill.style.width = '70%';
+      gltfLoader.parse(base64ToArrayBuffer(b64), '', onModelLoaded, onModelError);
+    }, 40);
+  } else {
+    onModelError(new Error('Embedded model missing'));
+  }
+} else {
+  gltfLoader.load(
+    MODEL_URL,
+    onModelLoaded,
+    xhr => {
+      if (xhr.total) {
+        const pct = Math.round((xhr.loaded / xhr.total) * 100);
+        loaderFill.style.width = `${Math.max(7, pct)}%`;
+        loaderText.textContent = `Entering the territory… ${pct}%`;
+      }
+    },
+    onModelError
+  );
+}
+
+setMobilePanel(document.body.dataset.mobilePanel || 'explore');
+document.querySelectorAll('[data-mobile-panel-button]').forEach(button =>
+  button.addEventListener('click', () => setMobilePanel(button.dataset.mobilePanelButton)));
+document.querySelectorAll('[data-close-mobile-panel]').forEach(button =>
+  button.addEventListener('click', () => setMobilePanel('explore')));
+if (typeof compactLayoutQuery.addEventListener === 'function') {
+  compactLayoutQuery.addEventListener('change', event => {
+    if (event.matches) setMobilePanel('explore');
+  });
+}
+let searchActiveTimer = null;
+searchInput.addEventListener('focus', () => {
+  if (searchActiveTimer) clearTimeout(searchActiveTimer);
+  document.body.classList.add('search-active');
+  if (isCompactLayout()) setMobilePanel('controls');
+});
+searchInput.addEventListener('blur', () => {
+  // Delay the sheet's return trip so a tap on a result can land first:
+  // blur fires on pointerdown and would otherwise move the button away.
+  searchActiveTimer = setTimeout(() => document.body.classList.remove('search-active'), 350);
+});
 
 document.querySelectorAll('[data-dataset]').forEach(button => {
   button.addEventListener('click', () => {
@@ -1222,10 +2314,111 @@ ghostModeInput.addEventListener('change', () => {
     ? 'Cortex and white matter turned to glass — the deep brain is yours.'
     : 'Solid anatomy restored.');
 });
+labelsEnabledInput.addEventListener('change', () => {
+  setCaption('LABELS', labelsEnabledInput.checked
+    ? 'Landmark labels on — deep structures join when x-ray or a slice reveals them.'
+    : 'Labels off. The territory speaks geometry again.');
+});
+
+/* ── Sprint 3 · IGNITE transport wiring ───────────────────────────── */
+ignitePlayEl.addEventListener('click', () => {
+  if (!pathwayAnimations.length) return;
+  if (!ignite.playing && pathwayAnimations.every(a => a.finished)) restartIgnitions();
+  else { ignite.playing = !ignite.playing; updateIgniteTransportUI(); }
+});
+igniteRestartEl.addEventListener('click', restartIgnitions);
+ignitePrevEl.addEventListener('click', () => stepStation(-1));
+igniteNextEl.addEventListener('click', () => stepStation(1));
+igniteSpeedEl.addEventListener('click', () => {
+  const speeds = [0.5, 1, 2, 4];
+  ignite.speed = speeds[(speeds.indexOf(ignite.speed) + 1) % speeds.length];
+  updateIgniteTransportUI();
+});
+igniteStepEl.addEventListener('click', () => {
+  ignite.step = !ignite.step;
+  updateIgniteTransportUI();
+  if (ignite.step) setCaption('STEP BY SYNAPSE', 'The signal now pauses at every synapse and decussation. Press play to release it to the next event.');
+});
+igniteFollowEl.addEventListener('click', () => {
+  ignite.follow = !ignite.follow;
+  updateIgniteTransportUI();
+});
+igniteOrdersEl.addEventListener('click', () => {
+  ignite.orders = !ignite.orders;
+  for (const a of pathwayAnimations) applyLineColors(a);
+  updateIgniteTransportUI();
+});
+igniteLesionEl.addEventListener('click', () => {
+  ignite.lesionMode = !ignite.lesionMode;
+  updateIgniteTransportUI();
+  if (ignite.lesionMode) setCaption('LESION PROBE', 'Tap a station chip to interrupt the pathway there and watch downstream go dark. Tap the same chip again to heal it.');
+});
+igniteLoopEl.addEventListener('click', () => {
+  ignite.loop = !ignite.loop;
+  updateIgniteTransportUI();
+});
+igniteCloseEl.addEventListener('click', () => {
+  clearIgnitions();
+  setCaption('IGNITE CLEARED', 'Pathway lines withdrawn. The territory is quiet anatomy again — ignite any tract to run the timeline.');
+});
+igniteScrubEl.addEventListener('input', () => {
+  ignite.scrubbing = true;
+  seekAll(Number(igniteScrubEl.value) / 1000);
+});
+igniteScrubEl.addEventListener('change', () => { ignite.scrubbing = false; });
+controls.addEventListener('start', () => {
+  if (ignite.follow) { ignite.follow = false; updateIgniteTransportUI(); }
+});
 document.querySelectorAll('[data-preset]').forEach(btn =>
   btn.addEventListener('click', () => applyLayerPreset(btn.dataset.preset)));
 explodeInput.addEventListener('input', () => updateExplode());
-isolateInput.addEventListener('change', updateVisibility);
+isolateInput.addEventListener('change', () => {
+  updateVisibility();
+  renderSelectedActions();
+});
+
+sliceEnabledInput.addEventListener('change', () => {
+  applySlice();
+  setCaption('SLICE LAB', sliceEnabledInput.checked
+    ? sliceAnatomicalNote(Number(slicePositionInput.value) || 0)
+    : 'Slice removed — the whole neuraxis is back together.');
+});
+slicePositionInput.addEventListener('input', applySlice);
+slicePositionInput.addEventListener('change', () => {
+  if (sliceEnabledInput.checked) setCaption('SLICE LAB', sliceAnatomicalNote(Number(slicePositionInput.value) || 0));
+});
+document.querySelectorAll('[data-slice-axis]').forEach(btn =>
+  btn.addEventListener('click', () => {
+    sliceAxis = btn.dataset.sliceAxis;
+    sliceEnabledInput.checked = true;
+    applySlice();
+    setCaption('SLICE LAB', sliceAnatomicalNote(Number(slicePositionInput.value) || 0));
+  }));
+document.querySelector('#sliceFlip').addEventListener('click', () => {
+  sliceFlipped = !sliceFlipped;
+  sliceEnabledInput.checked = true;
+  applySlice();
+  setCaption('SLICE LAB', sliceAnatomicalNote(Number(slicePositionInput.value) || 0));
+});
+document.querySelector('#sliceReset').addEventListener('click', () => {
+  configureSlice({ enabled: false, axis: 'sagittal', position: 0, flipped: false });
+  setCaption('SLICE LAB', 'Slice removed — the whole neuraxis is back together.');
+});
+restoreStructuresBtn.addEventListener('click', () => restoreStructureModes(true));
+
+document.querySelectorAll('[data-tour]').forEach(btn =>
+  btn.addEventListener('click', () => startTour(btn.dataset.tour)));
+tourBackBtn.addEventListener('click', () => {
+  if (!activeTour || tourStepIndex === 0) return;
+  tourStepIndex--;
+  runTourStep();
+});
+tourNextBtn.addEventListener('click', () => {
+  if (!activeTour) return;
+  if (tourStepIndex >= activeTour.steps.length - 1) endTour(true);
+  else { tourStepIndex++; runTourStep(); }
+});
+tourExitBtn.addEventListener('click', () => endTour(true));
 document.querySelectorAll('[data-view]').forEach(btn => btn.addEventListener('click', () => setView(btn.dataset.view)));
 document.querySelectorAll('[data-ignite]').forEach(btn => btn.addEventListener('click', () => ignitePathway(btn.dataset.ignite)));
 document.querySelector('#awakenNeuraxia').addEventListener('click', awakenNeuraxia);
@@ -1239,6 +2432,10 @@ document.querySelector('#resetView').addEventListener('click', () => {
 });
 
 addEventListener('keydown', ev => {
+  if (ev.key === 'Escape' && activeTour) {
+    endTour(true);
+    return;
+  }
   if (ev.key === '/' && document.activeElement !== searchInput) {
     ev.preventDefault();
     searchInput.focus();
@@ -1247,8 +2444,10 @@ addEventListener('keydown', ev => {
 
 canvas.addEventListener('pointerdown', ev => {
   controls.autoRotate = false;
+  mobileHintEl?.classList.add('is-hidden');
   pointerStart = { x: ev.clientX, y: ev.clientY, t: performance.now() };
 });
+canvas.addEventListener('pointercancel', () => { pointerStart = null; });
 
 canvas.addEventListener('pointerup', ev => {
   if (!pointerStart) return;
@@ -1262,7 +2461,8 @@ canvas.addEventListener('pointerup', ev => {
   pointer.y = -(ev.clientY / innerHeight) * 2 + 1;
   raycaster.setFromCamera(pointer, camera);
   const visibleMeshes = entries.filter(e => e.mesh.visible).map(e => e.mesh);
-  const hit = raycaster.intersectObjects(visibleMeshes, false)[0];
+  const hits = raycaster.intersectObjects(visibleMeshes, false);
+  const hit = hits.find(h => !sliceEnabledInput?.checked || slicePlane.distanceToPoint(h.point) >= -0.0001);
   if (!hit) return;
   const entry = entries.find(e => e.mesh === hit.object);
   if (entry) selectEntry(entry);
@@ -1271,7 +2471,7 @@ canvas.addEventListener('pointerup', ev => {
 addEventListener('resize', () => {
   camera.aspect = innerWidth / innerHeight;
   camera.updateProjectionMatrix();
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.setPixelRatio(renderPixelRatio);
   renderer.setSize(innerWidth, innerHeight);
 });
 
@@ -1295,6 +2495,11 @@ function tick(now) {
   updateJourney(now);
   updateAmbientLife(now);
   const signalHead = updatePathways(now);
+  if (ignite.follow && ignite.playing && signalHead && !cameraAnimation && !journeyAnimation) {
+    const followDelta = signalHead.clone().sub(controls.target).multiplyScalar(0.07);
+    controls.target.add(followDelta);
+    camera.position.add(followDelta);
+  }
   if (signalHead) {
     signalLight.position.copy(signalHead);
     signalLight.intensity = 2.4;
@@ -1312,10 +2517,24 @@ function tick(now) {
   controls.update();
   if (selected && selectionBox?.visible) selectionBox.setFromObject(selected.mesh);
   renderer.render(scene, camera);
+  if ((labelFrame++ % 2) === 0) updateLabels();
 
   frames++;
   if (now - fpsTime >= 600) {
-    fpsEl.textContent = String(Math.round((frames * 1000) / (now - fpsTime)));
+    const measuredFps = Math.round((frames * 1000) / (now - fpsTime));
+    fpsEl.textContent = String(measuredFps);
+    if (QUALITY_MODE === 'auto' && entries.length) {
+      if (measuredFps < 28) {
+        slowWindows++;
+        if (slowWindows >= 3 && renderPixelRatio > 1) {
+          renderPixelRatio = Math.max(1, renderPixelRatio - 0.25);
+          renderer.setPixelRatio(renderPixelRatio);
+          slowWindows = 0;
+        }
+      } else {
+        slowWindows = 0;
+      }
+    }
     drawCallsEl.textContent = String(renderer.info.render.calls);
     const tris = renderer.info.render.triangles;
     triCountEl.textContent = tris >= 1000 ? `${(tris / 1000).toFixed(0)}k` : String(tris);

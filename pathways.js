@@ -62,6 +62,7 @@ export function buildFireGraphPathways(ctx) {
     entries: [precentralR, capsuleR, crusR, pons, medulla, cord],
     chain: 'UMN (precentral) → posterior limb → crus → pons → pyramid → ◆ pyramidal decussation → lateral CST → ○ anterior horn → LMN',
     crossing: '◆ Pyramidal decussation · caudal medulla (~90% of fibres cross)',
+    lesion: 'Lesion story: above the crossing, weakness is contralateral with UMN signs (spasticity, brisk reflexes, upgoing plantar); in the cord after the crossing, UMN signs are ipsilateral below the level.',
     buildPoints: () => [
       C(precentralR),
       C(capsuleR),
@@ -97,6 +98,7 @@ export function buildFireGraphPathways(ctx) {
     entries: [cord, medulla, pons, thalamusR, postcentralR],
     chain: '1° neuron → fasciculus gracilis (ipsilateral) → ○ nucleus gracilis → ◆ internal arcuate decussation → medial lemniscus → ○ VPL → postcentral cortex',
     crossing: '◆ Sensory (internal arcuate) decussation · caudal medulla, AFTER the first synapse',
+    lesion: 'Lesion story: vibration and joint position vanish — sensory ataxia, Romberg positive. Cord-level loss is ipsilateral below the lesion; from the medulla up it is contralateral.',
     buildPoints: () => [
       cordPointAt(0.9, 0.3, -0.75),
       cordPointAt(0.55, 0.3, -0.75),
@@ -131,6 +133,7 @@ export function buildFireGraphPathways(ctx) {
     entries: [cord, medulla, pons, thalamusL, postcentralL],
     chain: '1° neuron → ○ dorsal horn → ◆ anterior white commissure (same level) → anterolateral cord → spinal lemniscus → ○ VPL → postcentral cortex (+ insula / cingulate affect)',
     crossing: '◆ Anterior white commissure · within ~1–2 segments of entry — the earliest crossing of the three',
+    lesion: 'Lesion story: pain and temperature are lost from a segment or two BELOW the lesion, on the opposite side — dissociated sensory loss that separates cord level from tract level.',
     buildPoints: () => [
       cordPointAt(0.82, -0.45, -0.45),
       cordPointAt(0.8, -0.1, 0.25),
@@ -182,6 +185,7 @@ export function buildFireGraphPathways(ctx) {
     entries: [opticNerveL, opticNerveR, chiasm, opticTractL, lgnL, cuneusL, lingualL],
     chain: 'Retinal ganglion cells → optic nerve → ◆ chiasm (nasal cross, temporal stay) → optic tract → ○ LGN → optic radiation (Meyer + Baumgarten loops) → calcarine V1',
     crossing: '◆ Partial decussation at the chiasm — the only FIRE crossing that sorts by FIELD, not by body side',
+    lesion: 'Lesion story: nerve = one eye; chiasm centre = bitemporal hemianopia; tract, radiation or V1 = contralateral homonymous defect (Meyer loop upper field, Baumgarten loop lower field).',
     // Main curve: LEFT eye temporal-retina fibres (do not cross) + parietal loop.
     buildPoints: () => [
       C(opticNerveL, 0.01, 0, 0.02),
@@ -249,6 +253,7 @@ export function buildFireGraphPathways(ctx) {
     entries: [opticNerveL, chiasm, opticTractL, brachiumSCL, posteriorCommissure, cn3L, cn3R],
     chain: 'Retina → CN II → chiasm → optic tract → brachium of superior colliculus → ○ pretectal olivary nucleus → BILATERAL ◆ → ○ Edinger–Westphal ×2 → CN III → ○ ciliary ganglion → sphincter pupillae ×2',
     crossing: '◆ Bilateral split at the pretectum — part crosses in the posterior commissure. This fork is why the consensual reflex exists',
+    lesion: 'Lesion story: afferent (CN II) lesion = relative afferent pupillary defect, yet both pupils still answer the healthy eye; efferent (CN III) lesion = that pupil fails direct AND consensual — the blown pupil of compression.',
     buildPoints: () => [
       C(opticNerveL, 0.008, 0, 0.02),
       C(chiasm, 0.008, 0.004, 0),
@@ -293,6 +298,7 @@ export function buildFireGraphPathways(ctx) {
     entries: [cord],
     chain: 'Muscle spindle → Ia afferent → dorsal root ganglion → dorsal root → ○ α-motor neuron (ONE synapse) → ventral root → same muscle',
     crossing: 'No decussation — the only FIRE circuit that never crosses, never ascends, and answers in ~30 ms',
+    lesion: 'Lesion story: an absent reflex localises to the arc itself (root, LMN, junction, muscle); a brisk reflex with clonus points ABOVE it, where descending UMN control was lost.',
     buildPoints: () => [
       cordPointAt(0.8, 7.5, 0.4),
       cordPointAt(0.8, 3.4, -0.2),

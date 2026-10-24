@@ -1,18 +1,28 @@
-NEURAXIA — ONE-FILE EDITION
-============================
+NEURAXIA — Milestone bundle (Sprints 2A + 2B + 3) · 2026-10-24
+===============================================================
 
-Upload ONLY the file  index.html  to the ROOT of your GitHub repo
-(overwriting the index.html already there). Everything — the 3D
-engine, styling, logo and both anatomy models — is inside that one
-file. No folders needed.
+TO UPDATE THE LIVE WEBSITE (GitHub Pages):
+  Upload ONLY the file  index.html  (in this ZIP's root) to the root of
+  GitHub repo  user003/Neuraxia , replacing the existing index.html.
+  Nothing else needs uploading. No need to delete anything.
+  Live site: https://user003.github.io/Neuraxia/
+  (Give Pages a minute, then hard-refresh.)
 
-Steps:
-1. Open your repo → "Add file" → "Upload files" → choose index.html
-   → Commit changes.
-2. Settings → Pages → "Deploy from a branch" → main → / (root). (Done already? skip.)
-3. Wait 1-2 minutes. Open your site link in a NEW tab
-   (close the old tab first — Safari loves caching the broken page).
+WHAT'S NEW SINCE YOUR LAST UPLOAD:
+  • Sprint 2A — DISSECT tools: Focus / Solo / Ghost / Hide / Pulse per
+    structure, Slice Lab (sagittal / axial / coronal clipping),
+    3 guided tours.
+  • Sprint 2B — Floating landmark labels with leader lines +
+    Neighbour mode (tap Neighbours in Details).
+  • Sprint 3 — IGNITE timeline console: play/pause/scrub/speed,
+    station chips, step-by-synapse, neuron-order colours,
+    follow-the-signal camera, and a lesion probe.
+    Plus a fix: final stations of CST/DCML/STT now fire properly.
 
-You should see the black NEURAXIA loading screen, then the living brain.
-The other loose files in the repo can stay; only index.html matters now.
-Comparison "Sprint 1 spike" model is not embedded in this edition.
+FOR YOUR RECORDS:
+  neuraxia-source/ contains the complete project (source code,
+  pipeline, curation records, sprint notes). Keep it on your laptop —
+  it does NOT need to go on GitHub for the website to work.
+
+STATUS: internal candidate. Public/commercial release still waits on
+DBCLS licence clarification + expert neuroanatomy sign-off.

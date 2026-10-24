@@ -360,7 +360,24 @@ See `research/sprint-1b/reports/SPRINT_1B_DECISION_REPORT.md`.
 - Git initialised + committed; MIT code licence + DATA_NOTICE; GitHub Pages workflow (geometry test in CI); DBCLS email drafted
 - See `research/sprint-1d/SPRINT_1D_NOTES.md` and `GITHUB_DEPLOY.md`
 
-### Sprint 2 — DISSECT alpha
+### Sprint 1E — Phone & tablet shell ✅ internal milestone
+- Compact bottom-sheet UI (Explore / Details / FIRE / Controls), safe areas, 100dvh, ≥44px targets, responsive camera fit; deployed live to GitHub Pages and confirmed on the owner's iPhone
+- See `research/sprint-1e/SPRINT_1E_RESPONSIVE_NOTES.md`
+
+### Sprint 2A — DISSECT proper (first tools) ✅ internal milestone
+- Per-structure Focus / Solo / Ghost others / Ghost this / Hide / Pulse here / Restore, with FIRE routes derived per structure from the pathway graph
+- Slice lab: sagittal/axial/coronal clipping planes with flip + raycast respect
+- Guided tours (3) composing presets, focus, explode, slice and FIRE ignitions
+- See `research/sprint-2/SPRINT_2A_DISSECT_NOTES.md`
+
+
+### Sprint 2B — Labels + neighbours ✅ internal milestone
+Floating landmark labels with leader lines (collision- and UI-aware, deep labels only when revealed) and a neighbour mode that derives adjacency from live mesh bounding-box gaps + FIRE graph stations, with tappable chips and copper glows — explicitly labelled a teaching approximation, not surgical adjacency. Workspace cleaned 176 MB → 39 MB in the same turn. Suites: 2B all-pass, 2A regression all-pass, FIRE geometry exit 0. Notes: `research/sprint-2/SPRINT_2B_LABELS_NEIGHBOURS_NOTES.md`. **Sprint 2A + 2B shipped with Sprint 3 in the milestone ZIP (see Sprint 3 below).**
+
+### Sprint 3 — IGNITE timeline engine ✅ internal milestone
+Floating IGNITE console: play/pause/restart, proportional timeline scrubber, 0.5–4× speed, station stepper + tappable station chips, step-by-synapse auto-pause, neuron-order line colouring (1°–4°) with legend, follow-the-signal camera, loop, and a ✕ lesion probe that clamps the pulse at a chosen station, darkens downstream, and shows a draft lesion story per pathway. Fixed a latent Sprint-1C bug (markers built per entry, consumed per station — final stations of CST/DCML/STT never fired); curves are now cached between explode changes; auto-ignitions (on-load demo, Awaken) can no longer stomp a user ignition. Suites: Sprint 3 all-pass (step-pause scrub 500, lesion clamp 880), 2B all-pass, 2A regression all-pass, geometry exit 0. Notes: `research/sprint-3/SPRINT_3_IGNITE_NOTES.md`. **Milestone delivery: Sprints 2A + 2B + 3 ship together in `neuraxia-MILESTONE-sprint3.zip` (awaiting owner GitHub upload).**
+
+### Sprint 2 — DISSECT alpha (original plan; largely delivered by 1C + 2A)
 - Viewer, camera presets, system toggles
 - Search and selectable structures
 - Isolate/ghost/hide
@@ -445,4 +462,4 @@ The first release is ready to show a faculty mentor only when:
 5. **Audit licensed gap-fillers:** Allen Human Reference Atlas 3D labels/registration for the small nuclei BP3D lacks.
 6. **Identity redraw:** convert Design III into scalable vector versions once the alpha experience stabilises.
 
-> Next execution command: **PUSH TO GITHUB (private) + enable Pages, send DBCLS email, then SPRINT 2 — DISSECT proper**
+> Next execution command: **REAL-DEVICE PASS (iPhone/iPad FPS + gestures), SEND DBCLS EMAIL, then SPRINT 2B — labels + neighbour mode**
